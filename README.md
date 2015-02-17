@@ -55,17 +55,17 @@ LESS OBVIOUS FEATURES:
 
 IMPORTANT METHODS:
 
-    1-PureData.OpenPatch(patchName); Method to open patches.
+    -PureData.OpenPatch(patchName); Method to open patches.
 
-    2-PureData.Play(soundName, source, delay, options); Method to play sounds in the PureData hierarchy with their scene-dependant settings.
+    -PureData.Play(soundName, source, delay, options); Method to play sounds in the PureData hierarchy with their scene-dependant settings.
 
-    3-PureData.PlayContainer(containerName, source, delay, options); Method to play containers set up in the PureData script.
+    -PureData.PlayContainer(containerName, source, delay, options); Method to play containers set up in the PureData script.
 
-    4-PureData.PlaySequence(sequenceName, source, delay, options); Method to play sequences set up in the PureData script.
+    -PureData.PlaySequence(sequenceName, source, delay, options); Method to play sequences set up in the PureData script.
 
-    5-PureData.Send(receiverName, value); Method to send a message to a [receive receiverName] Pure Data object.
+    -PureData.Send(receiverName, value); Method to send a message to a [receive receiverName] Pure Data object.
 
-    6-PureData.Receive(sendName, receiver, asynchronous); Method to receive messages from a [send sendName] Pure Data object.
+    -PureData.Receive(sendName, receiver, asynchronous); Method to receive messages from a [send sendName] Pure Data object.
 
 -----------------------------------------------------------
 
