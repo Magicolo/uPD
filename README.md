@@ -1,6 +1,7 @@
 uPD v1.00
 
 PRETTY OBVIOUS FEATURES:
+
     -Let's you use the full power of Pure Data via LibPD.
     
     -Play/Pause/Resume/Stop audio files with any sample rate/bit rate.
@@ -17,6 +18,7 @@ PRETTY OBVIOUS FEATURES:
     
     
 LESS OBVIOUS FEATURES:
+
     -Play sounds with static methods (ex: PureData.Play(soundName)).
     
     -Can be used without using the Pure Data language (though it is needed for more advanced features).
@@ -46,6 +48,7 @@ LESS OBVIOUS FEATURES:
     
 
 IMPORTANT METHODS:
+
     1-PureData.OpenPatch(patchName); Method to open patches.
     
     2-PureData.Play(soundName, source, delay, options); Method to play sounds in the PureData hierarchy with their scene-dependant settings.
@@ -60,6 +63,7 @@ IMPORTANT METHODS:
     
       
 QUICK TUTORIAL:
+
     -Import uPD.unitypackage into your Unity project.
     
     -Make sure there is a listener in the scene (if there is not, the PureData script will create one on Awake()).
@@ -80,6 +84,7 @@ QUICK TUTORIAL:
     
 
 TODO LIST THAT I CAN DO (though anyone is welcome to help):
+
     -Option to link sequences together in the editor.
     
     -Mute and Solo options on buses
@@ -120,6 +125,7 @@ TODO LIST THAT I CAN DO (though anyone is welcome to help):
     
 
 TODO LIST THAT I DON'T REALLY KNOW HOW TO DO (any help would be greatly appreciated):
+
     -Android compatibility (shouldn't be too hard; it's just that Pure Data cannot find the patches path when on Android)
     
     -Web compatibility (this is a matter of being able to read .pd files on the web)
@@ -132,6 +138,7 @@ TODO LIST THAT I DON'T REALLY KNOW HOW TO DO (any help would be greatly apprecia
     
 
 NOTES:  
+
     -There must be an instance of PureData in the first scene of the game.
     
     -Imported sounds must have Decompressed On Load or Load In Memory as their Load Type.
@@ -146,6 +153,7 @@ NOTES:
     
     
 THANKS TO:
+
     -Pure Data, Miller Puckette (http://puredata.info/)
     
     -LibPD, Peter Brinkmann (http://libpd.cc/)
