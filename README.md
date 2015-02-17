@@ -1,8 +1,8 @@
-###### uPD v1.00 ######
+##### uPD v1.00 #####
 
 ---
 
-### PRETTY OBVIOUS FEATURES ###
+### PRETTY OBVIOUS FEATURES: ###
 * Let's you use the full power of Pure Data via LibPD.
 * Play/Pause/Resume/Stop audio files with any sample rate/bit rate.
 * 3D spatialization of sounds.
@@ -13,7 +13,7 @@
 
 ---
 
-### LESS OBVIOUS FEATURES ###
+### LESS OBVIOUS FEATURES: ###
 * Play sounds with static methods (ex: PureData.Play(soundName)).
 * Can be used without using the Pure Data language (though it is needed for more advanced features).
 * A library of Unity compatible objects is included such as basic FX, modulators and sources.
@@ -31,7 +31,7 @@ the state of an enum (inspired by Wwise).
 
 ---
 
-### IMPORTANT METHODS ###
+### IMPORTANT METHODS: ###
 * PureData.OpenPatch(patchName); Method to open patches.
 * PureData.Play(soundName, source, delay, options); Method to play sounds in the PureData hierarchy with their scene-dependant settings.
 * PureData.PlayContainer(containerName, source, delay, options); Method to play containers set up in the PureData script.
@@ -41,24 +41,24 @@ the state of an enum (inspired by Wwise).
 
 ---
 
-### QUICK TUTORIAL ###
+### QUICK TUTORIAL: ###
 * Import uPD.unitypackage into your Unity project.
 * Make sure there is a listener in the scene (if there is not, the PureData script will create one on Awake()).
 * Select Magicolo's Tools/Create/Pure Data.
-* Three main things will have happened.
+* Three main things will have happened:
 
-    1-Required .dll files will be copied to you Unity Editor directory (when building, these files will also be copied to you build folder).
+    -Required .dll files will be copied to you Unity Editor directory (when building, these files will also be copied to you build folder).
 
-    2-An asset named PureDataSettings.asset will be created in the Assets folder. This file contains General Settings and all the data for Buses,   Spatializers, Containers and Sequences. You can bring settings from another project and PureData will use them instead (some references might be lost).
+    -An asset named PureDataSettings.asset will be created in the Assets folder. This file contains General Settings and all the data for Buses,   Spatializers, Containers and Sequences. You can bring settings from another project and PureData will use them instead (some references might be lost).
 
-    3-A GameObject named PureData will be created with a hierarchy mirroring the folder structure under the Resources folder (only folders with audio files in the will appear). The objects of the hierarchy can be used to set default settings for sounds (don't worry, these objects will all be destroyed when playing the built application).
-	
+    -A GameObject named PureData will be created with a hierarchy mirroring the folder structure under the Resources folder (only folders with audio files in the will appear). The objects of the hierarchy can be used to set default settings for sounds (don't worry, these objects will all be destroyed when playing the built application).
+    
 * From a script use PureData.Play(soundName, source, delay, options) to play a sound in the created hierarchy (note that all sound settings can be overriden with PureDataOption) or use PureData.OpenPatch(patchName) to open a patch.
 * For more details check out the example scenes in Magicolo/!Examples/Pure Data/
 
 ---
 
-### TODO LIST THAT I CAN DO ### (though anyone is welcome to help)
+### TODO LIST THAT I CAN DO: ### (though anyone is welcome to help)
 * Option to link sequences together in the editor.
 * Mute and Solo options on buses
 * Find a way to retreive the actual settings for settings that can be delayed or ramped (volume, pitch, etc.). Will need to be retreived from Pure Data.
@@ -81,7 +81,7 @@ the state of an enum (inspired by Wwise).
 
 ---
 
-### TODO LIST THAT I DON'T REALLY KNOW HOW TO DO (any help would be greatly appreciated) ###
+### TODO LIST THAT I DON'T REALLY KNOW HOW TO DO (any help would be greatly appreciated): ###
 * Android compatibility (shouldn't be too hard; it's just that Pure Data cannot find the patches path when on Android)
 * Web compatibility (this is a matter of being able to read .pd files on the web)
 * Support objects from Pure Data Extended (implies to recompile libpdcsharp.dll and may require to modify the LibPD scripts)
@@ -90,7 +90,7 @@ the state of an enum (inspired by Wwise).
 
 ---
 
-### NOTES ###
+### NOTES: ###
 * There must be an instance of PureData in the first scene of the game.
 * Imported sounds must have Decompressed On Load or Load In Memory as their Load Type.
 * Sounds that are to be played asynchronously must be already loaded in memory by using PureData.Load() or by using the LoadOnAwake option or by having them played synchronously before.
