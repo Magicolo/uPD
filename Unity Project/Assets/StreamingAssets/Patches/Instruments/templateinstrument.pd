@@ -1,0 +1,11 @@
+#N canvas 688 272 547 300 10;
+#X declare -path ../Data -path ../Effects -path ../Misc -path ../Signal
+-path ../Sources -path ../Unity;
+#X obj 22 266 outlet~ left;
+#X obj 102 266 outlet~ right;
+#X obj 22 13 declare -path ../Data -path ../Effects -path ../Misc -path
+../Signal -path ../Sources -path ../Unity;
+#X obj 22 46 inlet patterns;
+#X obj 286 46 inlet messages;
+#X obj 286 66 route Play Stop Step Sleep;
+#X connect 4 0 5 0;

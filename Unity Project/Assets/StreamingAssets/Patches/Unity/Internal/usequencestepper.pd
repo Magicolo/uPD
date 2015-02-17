@@ -1,0 +1,10 @@
+#N canvas 103 575 300 143 10;
+#X obj 22 56 metro;
+#X obj 22 96 s usequence_step;
+#X obj 22 76 \$1;
+#X obj 61 39 r usequence_metro\$1;
+#X obj 22 18 r usequence_stepper\$1;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 1;
+#X connect 4 0 0 0;

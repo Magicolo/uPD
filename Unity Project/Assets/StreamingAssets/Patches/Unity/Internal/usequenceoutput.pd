@@ -1,0 +1,14 @@
+#N canvas 172 415 450 112 10;
+#X msg 263 44 set \$1_left;
+#X msg 343 44 set \$1_right;
+#X obj 138 61 throw~ Master_right;
+#X obj 21 61 throw~ Master_left;
+#X obj 21 41 inlet~;
+#X obj 138 41 inlet~;
+#X obj 263 24 r usequence_output\$1;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 4 0 3 0;
+#X connect 5 0 2 0;
+#X connect 6 0 0 0;
+#X connect 6 0 1 0;

@@ -1,0 +1,3 @@
+#N canvas 283 499 307 91 10;
+#X obj -310 16 table uaudioclip_left\$1 0;
+#X obj -310 36 table uaudioclip_right\$1 0;

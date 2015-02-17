@@ -1,0 +1,4 @@
+#N canvas 200 300 1000 300 10;
+#X obj 0 50 loadbang;
+#X obj 0 130 outlet;
+#X coords 0 -1 1 1 8 19 2 0 0;

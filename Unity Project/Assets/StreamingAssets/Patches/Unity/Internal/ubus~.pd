@@ -1,0 +1,16 @@
+#N canvas 461 420 297 147 10;
+#X obj -252 97 outlet~;
+#X obj -161 97 outlet~;
+#X obj -252 19 catch~ \$1_left;
+#X obj -162 19 catch~ \$1_right;
+#X obj -127 41 r ubus_volume\$1;
+#X obj -161 77 *~;
+#X obj -252 77 *~;
+#X obj -127 60 line~;
+#X connect 2 0 6 0;
+#X connect 3 0 5 0;
+#X connect 4 0 7 0;
+#X connect 5 0 1 0;
+#X connect 6 0 0 0;
+#X connect 7 0 5 1;
+#X connect 7 0 6 1;

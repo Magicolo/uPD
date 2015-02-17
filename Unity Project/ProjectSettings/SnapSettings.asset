@@ -1,0 +1,9 @@
+MoveX:Single:1
+MoveY:Single:1
+MoveZ:Single:1
+Rotation:Single:15
+Scale:Single:0.1
+GridSize:Int32:10
+ShowCubes:Boolean:True
+ShowLines:Boolean:True
+FadeWithDistance:Boolean:False

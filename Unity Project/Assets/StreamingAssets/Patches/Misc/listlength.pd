@@ -1,0 +1,18 @@
+#N canvas 259 591 289 152 10;
+#X obj 23 23 inlet bang;
+#X obj 23 103 list length;
+#X obj 23 83 spigot;
+#X msg 65 83 0;
+#X msg 90 84 1;
+#X obj 23 43 t b b;
+#X obj 23 123 outlet;
+#X obj 23 63 getvar \$1;
+#X connect 0 0 5 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 1;
+#X connect 4 0 2 1;
+#X connect 5 0 7 0;
+#X connect 5 1 4 0;
+#X connect 7 0 2 0;

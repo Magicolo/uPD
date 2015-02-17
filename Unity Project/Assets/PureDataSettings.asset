@@ -1,0 +1,475 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40345a6636fc6974cba87fd19e0e1331, type: 3}
+  m_Name: PureDataSettings
+  m_EditorClassIdentifier: 
+  masterVolume: 1
+  maxVoices: 100
+  patchesPath: Patches
+  resourcesPath: Patches/Unity/Internal/uresources.pd
+  speedOfSound: 343
+  pureData: {fileID: 0}
+--- !u!114 &11481642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be5b51822352f04a908d2b4de9815f7, type: 3}
+  m_Name: Buses
+  m_EditorClassIdentifier: 
+  mixerPath: E:\Projects\Unity\test\Assets\StreamingAssets\Patches\Unity\umixer~.pd
+  buses: []
+--- !u!114 &11481644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e980607c4b1e9ab46bf1d5796af99686, type: 3}
+  m_Name: Spatializers
+  m_EditorClassIdentifier: 
+  spatializers: []
+  pureData: {fileID: 0}
+--- !u!114 &11481646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aaf2398f13fd57499b3108e7c0c638c, type: 3}
+  m_Name: Containers
+  m_EditorClassIdentifier: 
+  containers:
+  - name: Mix
+    type: 0
+    switchSettings:
+      stateHolderObjectId: 0
+      stateHolderComponentId: 0
+      statePath: 
+      stateName: 
+      stateIndex: 0
+      pureData: {fileID: 0}
+    subContainers:
+    - name: 'Audio Source: HitHurt'
+      showing: 0
+      type: 0
+      infoName: HitHurt
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: 
+        stateIndex: 0
+        pureData: {fileID: 0}
+      options: []
+      id: 1
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    - name: 'Audio Source: Jump'
+      showing: 0
+      type: 0
+      infoName: Jump
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: 
+        stateIndex: 0
+        pureData: {fileID: 0}
+      options: []
+      id: 2
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    - name: 'Audio Source: PickupCoin'
+      showing: 0
+      type: 0
+      infoName: PickupCoin
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: 
+        stateIndex: 0
+        pureData: {fileID: 0}
+      options: []
+      id: 3
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    - name: 'Audio Source: Powerup'
+      showing: 0
+      type: 0
+      infoName: Powerup
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: 
+        stateIndex: 0
+        pureData: {fileID: 0}
+      options: []
+      id: 4
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    idCounter: 4
+    childrenIds: 01000000020000000300000004000000
+    pureData: {fileID: 0}
+  - name: Random
+    type: 1
+    switchSettings:
+      stateHolderObjectId: 0
+      stateHolderComponentId: 0
+      statePath: 
+      stateName: 
+      stateIndex: 0
+      pureData: {fileID: 0}
+    subContainers:
+    - name: 'Audio Source: HitHurt | Weight: 1'
+      showing: 0
+      type: 0
+      infoName: HitHurt
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: 
+        stateIndex: 0
+        pureData: {fileID: 0}
+      options: []
+      id: 1
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    - name: 'Audio Source: Jump | Weight: 1'
+      showing: 0
+      type: 0
+      infoName: Jump
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: 
+        stateIndex: 0
+        pureData: {fileID: 0}
+      options: []
+      id: 2
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    - name: 'Audio Source: PickupCoin | Weight: 1'
+      showing: 0
+      type: 0
+      infoName: PickupCoin
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: 
+        stateIndex: 0
+        pureData: {fileID: 0}
+      options: []
+      id: 3
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    - name: 'Audio Source: Powerup | Weight: 1'
+      showing: 0
+      type: 0
+      infoName: Powerup
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: 
+        stateIndex: 0
+        pureData: {fileID: 0}
+      options: []
+      id: 4
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    idCounter: 4
+    childrenIds: 01000000020000000300000004000000
+    pureData: {fileID: 0}
+  - name: Switch
+    type: 2
+    switchSettings:
+      stateHolderObjectId: 1
+      stateHolderComponentId: 3
+      statePath: State
+      stateName: 
+      stateIndex: 0
+      pureData: {fileID: 0}
+    subContainers:
+    - name: 'Audio Source: HitHurt | State: One'
+      showing: 0
+      type: 0
+      infoName: HitHurt
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: One
+        stateIndex: 0
+        pureData: {fileID: 0}
+      options: []
+      id: 1
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    - name: 'Audio Source: Jump | State: Two'
+      showing: 0
+      type: 0
+      infoName: Jump
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: Two
+        stateIndex: 1
+        pureData: {fileID: 0}
+      options: []
+      id: 2
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    - name: 'Audio Source: PickupCoin | State: Three'
+      showing: 0
+      type: 0
+      infoName: PickupCoin
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: Three
+        stateIndex: 2
+        pureData: {fileID: 0}
+      options: []
+      id: 3
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    - name: 'Audio Source: Powerup | State: Four'
+      showing: 0
+      type: 0
+      infoName: Powerup
+      weight: 1
+      switchSettings:
+        stateHolderObjectId: 0
+        stateHolderComponentId: 0
+        statePath: 
+        stateName: Four
+        stateIndex: 3
+        pureData: {fileID: 0}
+      options: []
+      id: 4
+      parentId: 0
+      childrenIds: 
+      pureData: {fileID: 0}
+    idCounter: 4
+    childrenIds: 01000000020000000300000004000000
+    pureData: {fileID: 0}
+  pureData: {fileID: 0}
+--- !u!114 &11481648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99a5111373ace34a8b421667e42b72e, type: 3}
+  m_Name: Sequences
+  m_EditorClassIdentifier: 
+  containerPath: E:\Projects\Unity\test\Assets\StreamingAssets\Patches\Unity\Internal\usequencecontainer.pd
+  sequences:
+  - name: Urlu
+    id: 1
+    volume: .00999999978
+    output: Master
+    loop: 1
+    sleepTime: 1
+    steps:
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    tracks:
+    - id: 1
+      instrumentPatchPath: Instruments/Urluberlu.pd
+      steps:
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 1
+      - patternIndex: 1
+      patterns:
+      - name: 
+        sendType: 1
+        sendSize: 2
+        subdivision: 16
+        pattern:
+        - 0
+        - 2
+        - 5
+        - 7
+        - 0
+        - 2
+        - 6
+        - 7
+        - 11
+        - 0
+        - 4
+        - 7
+        - 9
+        - 11
+        - 14
+        - 0
+        - 50
+        - 100
+        - 150
+        - 200
+        - 50
+        - 100
+        - 20
+        - 200
+        - 250
+        - 50
+        - 20
+        - 200
+        - 250
+        - 300
+        - 350
+        - 20
+        sortedPattern:
+        - 0
+        - 50
+        - 2
+        - 100
+        - 5
+        - 150
+        - 7
+        - 200
+        - 0
+        - 50
+        - 2
+        - 100
+        - 6
+        - 20
+        - 7
+        - 200
+        - 11
+        - 250
+        - 0
+        - 50
+        - 4
+        - 20
+        - 7
+        - 200
+        - 9
+        - 250
+        - 11
+        - 300
+        - 14
+        - 350
+        - 0
+        - 20
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 1
+        sendSize: 2
+        subdivision: 12
+        pattern:
+        - 0
+        - -2
+        - -3
+        - -7
+        - -10
+        - 0
+        - -3
+        - -5
+        - -7
+        - -9
+        - -10
+        - 0
+        - 50
+        - 100
+        - 150
+        - 200
+        - 25
+        - 50
+        - 100
+        - 150
+        - 20
+        - 250
+        - 30
+        - 20
+        sortedPattern:
+        - 0
+        - 50
+        - -2
+        - 100
+        - -3
+        - 150
+        - -7
+        - 200
+        - -10
+        - 25
+        - 0
+        - 50
+        - -3
+        - 100
+        - -5
+        - 150
+        - -7
+        - 20
+        - -9
+        - 250
+        - -10
+        - 30
+        - 0
+        - 20
+        pureData: {fileID: 0}
+      pureData: {fileID: 0}
+    spatializer:
+      name: 
+      showing: 0
+      pureData: {fileID: 0}
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+    pureData: {fileID: 0}
+  pureData: {fileID: 0}

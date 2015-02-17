@@ -1,0 +1,18 @@
+#N canvas 137 468 301 144 10;
+#X declare -path ../Signal;
+#X obj 20 13 declare -path ../Signal;
+#X obj 18 97 *~;
+#X obj 18 118 outlet~;
+#X obj 18 37 inlet~ source;
+#X obj 18 57 default~ \$1;
+#X obj 104 37 inlet~ modfrequency;
+#X obj 104 57 default~ \$2;
+#X obj 18 77 osc~;
+#X obj 104 77 osc~;
+#X connect 1 0 2 0;
+#X connect 3 0 4 0;
+#X connect 4 0 7 0;
+#X connect 5 0 6 0;
+#X connect 6 0 8 0;
+#X connect 7 0 1 0;
+#X connect 8 0 1 1;

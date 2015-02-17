@@ -1,0 +1,11 @@
+#N canvas 600 413 308 114 10;
+#X obj 17 85 s;
+#X obj 17 27 t b s;
+#X obj 17 66 list;
+#X obj 17 8 r get\$1;
+#X obj 50 47 r set\$1;
+#X connect 1 0 2 0;
+#X connect 1 1 0 1;
+#X connect 2 0 0 0;
+#X connect 3 0 1 0;
+#X connect 4 0 2 1;

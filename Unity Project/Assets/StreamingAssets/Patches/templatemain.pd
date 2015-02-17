@@ -1,0 +1,6 @@
+#N canvas 177 519 715 328 10;
+#X declare -path Data -path Effects -path Misc -path Signal -path Sources
+-path Unity;
+#X obj 22 49 umixer~;
+#X obj 22 13 declare -path Data -path Effects -path Misc -path Signal
+-path Sources -path Unity;

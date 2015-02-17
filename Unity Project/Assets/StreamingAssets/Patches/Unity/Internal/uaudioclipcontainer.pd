@@ -1,0 +1,8 @@
+#N canvas 200 300 450 300 10;
+#X obj 0 0 uaudioclip HitHurt;
+#X obj 0 0 uaudioclip Jump;
+#X obj 0 0 uaudioclip PianoD;
+#X obj 0 0 uaudioclip PickupCoin;
+#X obj 0 0 uaudioclip Powerup;
+#X obj 0 0 uaudioclip Synth_Chaotic;
+#X obj 0 0 uaudioclip Synth_Up;
