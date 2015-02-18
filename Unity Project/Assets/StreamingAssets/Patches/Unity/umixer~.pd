@@ -1,4 +1,14 @@
 #N canvas 200 300 1000 300 10;
 #X obj 0 50 loadbang;
-#X obj 0 130 outlet;
-#X coords 0 -1 1 1 8 19 2 0 0;
+#X symbolatom 0 0 10 0 0 0 - ubus_receiveNamedefault ubus_sendNamedefault;
+#X msg 0 70 symbol default;
+#X obj 0 90 s ubus_receiveNamedefault;
+#X obj 0 110 Internal/ubus~ default;
+#X obj 0 130 outlet~ default_left;
+#X obj 63 130 outlet~ default_right;
+#X obj 110 130 outlet;
+#X connect 0 0 2 0;
+#X connect 2 0 3 0;
+#X connect 4 0 5 0;
+#X connect 4 1 6 0;
+#X coords 0 -1 1 1 118 19 2 0 0;
