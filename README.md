@@ -45,11 +45,10 @@ the state of an enum (inspired by Wwise).
 * Import uPD.unitypackage into your Unity project.
 * Make sure there is a listener in the scene (if there is not, the PureData script will create one on Awake()).
 * Select Magicolo's Tools/Create/Pure Data.
-* Three main things will have happened:
+* Three main things will have happened.
     1. Required .dll files will be copied to you Unity Editor directory (when building, these files will also be copied to you build folder).
     2. An asset named PureDataSettings.asset will be created in the Assets folder. This file contains General Settings and all the data for Buses,   Spatializers, Containers and Sequences. You can bring settings from another project and PureData will use them instead (some references might be lost).
     3. A GameObject named PureData will be created with a hierarchy mirroring the folder structure under the Resources folder (only folders with audio files in the will appear). The objects of the hierarchy can be used to set default settings for sounds (don't worry, these objects will all be destroyed when playing the built application).
-    
 * From a script use PureData.Play(soundName, source, delay, options) to play a sound in the created hierarchy (note that all sound settings can be overriden with PureDataOption) or use PureData.OpenPatch(patchName) to open a patch.
 * For more details check out the example scenes in Magicolo/!Examples/Pure Data/
 
