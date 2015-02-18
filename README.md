@@ -16,8 +16,8 @@
 ### LESS OBVIOUS FEATURES: ###
 * Play sounds with static methods (ex: PureData.Play(soundName)).
 * Can be used without using the Pure Data language (though it is needed for more advanced features).
-* A library of Unity compatible objects is included such as basic FX, modulators and sources.
-* Multiediting of sound settings, sound preview and sound selection.
+* A library of Unity compatible objects such as basic FX, modulators and sources is included.
+* Multi-editing of sound settings, sound preview and sound selection.
 * Let's you play sounds asynchronously (as long as they are already loaded in memory).
 * Unlimited number of simultaneous voices (useful for voice intensive modules such as samplers).
 * Easy mixing with Unity defined buses and the [umixer~] object.

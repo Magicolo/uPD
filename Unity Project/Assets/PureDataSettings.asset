@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99a5111373ace34a8b421667e42b72e, type: 3}
   m_Name: Sequences
   m_EditorClassIdentifier: 
-  containerPath: E:\Projects\Unity\test\Assets\StreamingAssets\Patches\Unity\Internal\usequencecontainer.pd
+  containerPath: E:\Projects\Repositories\uPD\Unity Project\Assets\StreamingAssets\Patches\Unity\Internal\usequencecontainer.pd
   sequences:
   - name: Urlu
     id: 1
@@ -329,7 +329,7 @@ MonoBehaviour:
       beats: 4
     tracks:
     - id: 1
-      instrumentPatchPath: Instruments/Urluberlu.pd
+      instrumentPatchPath: Instruments/exampleinstrument.pd
       steps:
       - patternIndex: 0
       - patternIndex: 0

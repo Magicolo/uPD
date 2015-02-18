@@ -7,10 +7,6 @@ namespace Magicolo {
 		PureDataSourceItem sourceItem;
 		Vector2 scroll;
 		
-		void Start() {
-			PureData.OpenPatch("example");
-		}
-	
 		void Update() {
 			transform.OscillatePosition(1, 25, 0, "X");
 		}

@@ -9,13 +9,13 @@
 #N canvas 43 653 311 113 utrack 0;
 #X obj 23 65 outlet~ left;
 #X obj 103 65 outlet~ right;
-#X obj 23 44 ../../Instruments/Urluberlu;
+#X obj 23 44 ../../Instruments/exampleinstrument;
 #X obj 23 24 usequencemessager 1 1;
 #X connect 2 0 0 0;
 #X connect 2 1 1 0;
 #X connect 3 0 2 0;
 #X connect 3 1 2 1;
-#X restore 21 99 pd utrack Urluberlu;
+#X restore 21 99 pd utrack exampleinstrument;
 #X connect 6 0 2 0;
 #X connect 6 1 2 1;
 #X connect 6 0 3 0;

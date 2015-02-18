@@ -22,10 +22,6 @@ namespace Magicolo {
 		PureDataContainerItem containerItem;
 		Vector2 scroll;
 		
-		void Start() {
-			PureData.OpenPatch("example");
-		}
-	
 		void OnGUI() {
 			GUILayout.Label("Current Item: " + (containerItem == null ? "None" : containerItem.ToString()));
 		

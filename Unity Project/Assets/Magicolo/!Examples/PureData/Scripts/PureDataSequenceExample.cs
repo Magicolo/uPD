@@ -9,10 +9,6 @@ namespace Magicolo {
 		PureDataSequenceItem sequenceItem;
 		Vector2 scroll;
 		
-    	void Start() {
-			PureData.OpenPatch("example");
-		}
-	
 		void OnGUI() {
 			GUILayout.Label("Current Item: " + (sequenceItem == null ? "None" : sequenceItem.ToString()));
 		

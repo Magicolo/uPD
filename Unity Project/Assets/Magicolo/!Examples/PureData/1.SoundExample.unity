@@ -997,6 +997,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &1394498956
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1394498958}
+  - 114: {fileID: 1394498957}
+  m_Layer: 0
+  m_Name: ScreenLogger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1394498957
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394498956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed5e7acc2ad1b341be3e2001892434a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1394498958
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394498956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!1 &1402849145
 GameObject:
   m_ObjectHideFlags: 1
@@ -1265,7 +1304,7 @@ MonoBehaviour:
       pureData: {fileID: 1421968182}
     pureData: {fileID: 1421968182}
   clipManager:
-    containerPath: E:\Projects\Unity\test\Assets\StreamingAssets\Patches\Unity\Internal\uaudioclipcontainer.pd
+    containerPath: E:\Projects\Repositories\uPD\Unity Project\Assets\StreamingAssets\Patches\Unity\Internal\uaudioclipcontainer.pd
     clips:
     - name: HitHurt
       id: 0
@@ -1344,20 +1383,20 @@ MonoBehaviour:
     children:
     - {fileID: 1717251870}
     - {fileID: 288401640}
-    - {fileID: 288401640}
     - {fileID: 985550365}
     - {fileID: 583888453}
     - {fileID: 901127250}
     - {fileID: 2047681644}
+    - {fileID: 2047681644}
     folderStructure:
     - {fileID: 1791695783}
     paths:
-    - E:/Projects/Unity/test/Assets/Resources\SFX\HitHurt.wav
-    - E:/Projects/Unity/test/Assets/Resources\SFX\Jump.wav
-    - E:/Projects/Unity/test/Assets/Resources\SFX\PickupCoin.wav
-    - E:/Projects/Unity/test/Assets/Resources\SFX\Powerup.wav
-    - E:/Projects/Unity/test/Assets/Resources\SFX\Synth_Chaotic.wav
-    - E:/Projects/Unity/test/Assets/Resources\SFX\Synth_Up.wav
+    - E:/Projects/Repositories/uPD/Unity Project/Assets/Resources\SFX\HitHurt.wav
+    - E:/Projects/Repositories/uPD/Unity Project/Assets/Resources\SFX\Jump.wav
+    - E:/Projects/Repositories/uPD/Unity Project/Assets/Resources\SFX\PickupCoin.wav
+    - E:/Projects/Repositories/uPD/Unity Project/Assets/Resources\SFX\Powerup.wav
+    - E:/Projects/Repositories/uPD/Unity Project/Assets/Resources\SFX\Synth_Chaotic.wav
+    - E:/Projects/Repositories/uPD/Unity Project/Assets/Resources\SFX\Synth_Up.wav
     pureData: {fileID: 1421968182}
   editorHelper:
     selection: []
@@ -1498,6 +1537,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3f7d2cec556394c9fbe5a83adefc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1596045819
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1596045821}
+  - 114: {fileID: 1596045820}
+  m_Layer: 0
+  m_Name: ScreenLogger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1596045820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1596045819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed5e7acc2ad1b341be3e2001892434a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1596045821
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1596045819}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!1 &1620826971
 GameObject:
   m_ObjectHideFlags: 1
@@ -1531,6 +1609,45 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1620826971}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!1 &1635264274
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1635264276}
+  - 114: {fileID: 1635264275}
+  m_Layer: 0
+  m_Name: ScreenLogger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1635264275
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1635264274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed5e7acc2ad1b341be3e2001892434a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1635264276
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1635264274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
