@@ -28,8 +28,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be5b51822352f04a908d2b4de9815f7, type: 3}
   m_Name: Buses
   m_EditorClassIdentifier: 
-  mixerPath: E:\Projects\Unity\test\Assets\StreamingAssets\Patches\Unity\umixer~.pd
-  buses: []
+  mixerPath: E:\Projects\Repositories\uPD\Unity Project\Assets\StreamingAssets\Patches\Unity\umixer~.pd
+  buses:
+  - name: default
+    volume: 1
+    pureData: {fileID: 0}
 --- !u!114 &11481644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,7 +332,7 @@ MonoBehaviour:
       beats: 4
     tracks:
     - id: 1
-      instrumentPatchPath: Instruments/exampleinstrument.pd
+      instrumentPatchPath: Instruments/example.pd
       steps:
       - patternIndex: 0
       - patternIndex: 0

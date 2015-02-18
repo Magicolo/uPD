@@ -284,7 +284,23 @@ namespace Magicolo.AudioTools {
 			
 			pureData.communicator.SendDelayedMessage("usequence_output" + Id, delay, output);
 		}
-	
+
+		public void SetStepTempo(int stepIndex, float tempo) {
+			steps[stepIndex].tempo = tempo;
+		}
+
+		public void SetStepBeats(int stepIndex, int beats) {
+			steps[stepIndex].beats = beats;
+		}
+
+		public float GetStepTempo(int stepIndex) {
+			return steps[stepIndex].tempo;
+		}
+
+		public int GetStepBeats(int stepIndex) {
+			return steps[stepIndex].beats;
+		}
+		
 		public void ApplyOptions(params PureDataOption[] options) {
 			foreach (PureDataOption option in options) {
 				option.Apply(this);

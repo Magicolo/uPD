@@ -95,12 +95,8 @@ namespace Magicolo.AudioTools {
 			time = Mathf.Max(time, 0.01F);
 			delay = Mathf.Max(delay, 0);
 			
-			if (delay > 0) {
-				pureData.communicator.Send("uresources_messagedelayer_ff", masterVolume, time * 1000, "umastervolume", delay * 1000);
-			}
-			else {
-				pureData.communicator.Send("umastervolume", masterVolume, time * 1000);
-			}
+			pureData.communicator.SendDelayedMessage("umastervolume", delay, masterVolume, time * 1000);
+			pureData.editorHelper.RepaintInspector();
 		}
 
 		public bool IsMainThread() {

@@ -66,6 +66,12 @@ namespace Magicolo.AudioTools {
 				return sequence.spatializer.PanLevel;
 			}
 		}
+		
+		public override int CurrentStepIndex {
+			get {
+				return sequence.CurrentStepIndex;
+			}
+		}
 
 		public PureDataSequence sequence;
 		
@@ -85,6 +91,14 @@ namespace Magicolo.AudioTools {
 
 		public override void StopImmediate() {
 			sequence.StopImmediate();
+		}
+
+		public override float GetStepTempo(int stepIndex) {
+			return sequence.GetStepTempo(stepIndex);
+		}
+		
+		public override int GetStepBeats(int stepIndex) {
+			return sequence.GetStepBeats(stepIndex);
 		}
 
 		public override void ApplyOptions(params PureDataOption[] options) {

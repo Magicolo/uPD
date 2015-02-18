@@ -39,7 +39,15 @@ public abstract class PureDataSequenceItem : PureDataItem {
 		get;
 	}
 	
+	public abstract int CurrentStepIndex {
+		get;
+	}
+	
 	protected PureDataSequenceItem(PureData pureData)
 		: base(pureData) {
 	}
+	
+	public abstract float GetStepTempo(int stepIndex);
+	
+	public abstract int GetStepBeats(int stepIndex);
 }

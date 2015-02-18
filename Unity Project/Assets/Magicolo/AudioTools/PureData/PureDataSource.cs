@@ -293,7 +293,7 @@ namespace Magicolo.AudioTools {
 		}
 		
 		public void SetPhase(float targetPhase, float delay = 0) {
-			phase = targetPhase;
+			phase = Mathf.Clamp01(targetPhase);
 			
 			pureData.communicator.SendDelayedMessage("uaudiosource_phase" + Id, delay, phase);
 		}

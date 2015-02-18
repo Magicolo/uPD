@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{E5C00A68-E6DB-FEA3-938C-F34D364EA738}</ProjectGuid>
+	<ProjectGuid>{BDBCE7D3-139D-3EDB-816D-FB1D73476D25}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -168,7 +168,7 @@
      <Compile Include="Assets\Magicolo\GeneralTools\Logger\Logger.cs" />
      <Compile Include="Assets\Magicolo\GeneralTools\Logger\ScreenLogger.cs" />
      <Compile Include="Assets\Magicolo\GeneralTools\Logger\ScreenLoggerLine.cs" />
-     <None Include="Assets\Magicolo\AudioTools\PureData\!README.txt" />
+     <Compile Include="Assets\Test\zTest.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>

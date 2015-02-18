@@ -19,14 +19,10 @@ namespace Magicolo.AudioTools {
 		
 		public PureDataHierarchyManager(PureData pureData) {
 			this.pureData = pureData;
-			
-			UpdateHierarchy();
 		}
 		
 		public void Initialize(PureData pureData) {
 			this.pureData = pureData;
-			
-			UpdateHierarchy();
 		}
 		
 		public void Start() {

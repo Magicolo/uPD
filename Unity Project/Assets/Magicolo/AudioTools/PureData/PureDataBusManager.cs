@@ -74,6 +74,7 @@ namespace Magicolo.AudioTools {
 		
 		public void SetBusVolume(string busName, float targetVolume, float time = 0, float delay = 0) {
 			GetBus(busName).SetVolume(targetVolume, time, delay);
+			pureData.editorHelper.RepaintInspector();
 		}
 		
 		public bool SetMixerPath() {

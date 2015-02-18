@@ -15,6 +15,9 @@ namespace Magicolo.AudioTools {
 		public PureData pureData;
 
 		[SerializeField]
+		bool updateHierarchy;
+		
+		[SerializeField]
 		bool repaintDummy;
 		
 		[SerializeField]
@@ -78,7 +81,7 @@ namespace Magicolo.AudioTools {
 			base.OnProjectWindowChanged();
 			
 			if (pureData != null && pureData.hierarchyManager != null) {
-				pureData.hierarchyManager.UpdateHierarchy();
+				updateHierarchy = true;
 			}
 		}
 
@@ -86,7 +89,7 @@ namespace Magicolo.AudioTools {
 			base.OnSelectionChanged();
 			
 			if (pureData != null && pureData.hierarchyManager != null && selection.Length == 1 && selection[0] == pureData.gameObject) {
-				pureData.hierarchyManager.UpdateHierarchy();
+				updateHierarchy = true;
 			}
 		}
 		
@@ -95,6 +98,11 @@ namespace Magicolo.AudioTools {
 			
 			if (routine != null && !routine.MoveNext()) {
 				routine = null;
+			}
+			
+			if (updateHierarchy) {
+				pureData.hierarchyManager.UpdateHierarchy();
+				updateHierarchy = false;
 			}
 			
 			if (repaint) {

@@ -21,6 +21,8 @@ public class PureDataOption {
 		Output,
 		PlayRange,
 		Time,
+		Tempo,
+		Beats,
 		DopplerLevel,
 		VolumeRolloffMode,
 		MinDistance,
@@ -91,10 +93,10 @@ public class PureDataOption {
 	[SerializeField]
 	AudioClip clipValue;
 	
-	static readonly OptionTypes[] FloatTypes = { OptionTypes.FadeIn, OptionTypes.FadeOut, OptionTypes.RandomVolume, OptionTypes.RandomPitch, OptionTypes.DopplerLevel, OptionTypes.MinDistance, OptionTypes.MaxDistance, OptionTypes.PanLevel, OptionTypes.Time };
+	static readonly OptionTypes[] FloatTypes = { OptionTypes.FadeIn, OptionTypes.FadeOut, OptionTypes.RandomVolume, OptionTypes.RandomPitch, OptionTypes.DopplerLevel, OptionTypes.MinDistance, OptionTypes.MaxDistance, OptionTypes.PanLevel, OptionTypes.Time, OptionTypes.Beats };
 	static readonly OptionTypes[] StringTypes = { OptionTypes.Output };
 	static readonly OptionTypes[] BoolTypes = { OptionTypes.Loop };
-	static readonly OptionTypes[] Vector2Types = { OptionTypes.PlayRange, OptionTypes.Volume, OptionTypes.Pitch };
+	static readonly OptionTypes[] Vector2Types = { OptionTypes.PlayRange, OptionTypes.Volume, OptionTypes.Pitch, OptionTypes.Tempo };
 	static readonly OptionTypes[] VolumeRolloffModeTypes = { OptionTypes.VolumeRolloffMode };
 	static readonly OptionTypes[] ClipTypes = { OptionTypes.Clip };
 	static readonly OptionTypes[] DelayableTypes = { OptionTypes.Volume, OptionTypes.Pitch, OptionTypes.Output, OptionTypes.Time, OptionTypes.PlayRange, OptionTypes.RandomPitch, OptionTypes.RandomVolume };
@@ -199,11 +201,19 @@ public class PureDataOption {
 	}
 
 	public static PureDataOption Time(float time, float delay) {
-		return new PureDataOption(OptionTypes.Time, Mathf.Clamp01(time), delay);
+		return new PureDataOption(OptionTypes.Time, time, delay);
 	}
 	
 	public static PureDataOption Time(float time) {
 		return Time(time, 0);
+	}
+	
+	public static PureDataOption Tempo(int stepIndex, float tempo) {
+		return new PureDataOption(OptionTypes.Tempo, new Vector2(stepIndex, tempo));
+	}
+	
+	public static PureDataOption Beats(int stepIndex, int beats) {
+		return new PureDataOption(OptionTypes.Beats, new Vector2(stepIndex, beats));
 	}
 	
 	public string GetValueDisplayName() {
@@ -339,6 +349,14 @@ public class PureDataOption {
 				break;
 			case PureDataOption.OptionTypes.Output:
 				sequence.SetOutput(GetValue<string>(), delay);
+				break;
+			case PureDataOption.OptionTypes.Tempo:
+				Vector2 tempoData = GetValue<Vector2>();
+				sequence.SetStepTempo((int)tempoData.x, tempoData.y);
+				break;
+			case PureDataOption.OptionTypes.Beats:
+				Vector2 beatsData = GetValue<Vector2>();
+				sequence.SetStepBeats((int)beatsData.x, (int)beatsData.y);
 				break;
 			case PureDataOption.OptionTypes.VolumeRolloffMode:
 				sequence.spatializer.VolumeRolloffMode = GetValue<PureDataVolumeRolloffModes>();

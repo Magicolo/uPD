@@ -3,6 +3,7 @@
 ---
 
 ### PRETTY OBVIOUS FEATURES: ###
+* Works with Unity free and pro.
 * Let's you use the full power of Pure Data via LibPD.
 * Play/Pause/Resume/Stop audio files with any sample rate/bit rate.
 * 3D spatialization of sounds.
@@ -62,26 +63,32 @@ the state of an enum (inspired by Wwise).
 * Give access to spatializer settings
 * Complete documentation (XML, Tooltips, Help patches)
 * Autoduck on buses
+* In editor FX modules for Sequences and Buses
 * Remove the clicks when using PureDataOption.PlayRange or the PureDataOption.Time
 * Fix the doppler effect bug that occurs when pausing and playing the editor
 * Fix the "no matching catch" error in Pure Data when using [umixer~]
 * Fix the import setting 'Force To Mono' bug (sound plays only on left speaker)
+* Fix bus volume or master volume at runtime persistence bug
+* Send current beat to instrument patches
+* The options PureDataOption.Tempo() and PureDataOption.Beats() should apply their effect immediatly instead of waiting until the next time the step is played
 * Gain slider to expand the soundwave in PureDataSetup
 * FadeIn and FadeOut settings as sliders under the soundwave
 * Sequence containers
 * Blend containers
+* In editor sampler
 * Divide sound into multiple parts (play by calling soundName + suffix) instead of just one play range
 * HRTF (head related transfer function)
+* Enable runtime debugging with [netreceive] (will require special receivers and senders [ureceive] and [usend])
 * Support more than 2 audio channels
 * Support streaming sounds.
 
 ---
 
 ### TODO LIST THAT I DON'T REALLY KNOW HOW TO DO (any help would be greatly appreciated): ###
-* Android compatibility (shouldn't be too hard; it's just that Pure Data cannot find the patches path when on Android)
-* Web compatibility (this is a matter of being able to read .pd files on the web)
+* Android compatibility (shouldn't be too hard; it's just that Pure Data fails to open patches when on Android)
+* Web compatibility (this is a matter of being able to read .pd files with their dependencies on the web)
 * Support objects from Pure Data Extended (implies to recompile libpdcsharp.dll and may require to modify the LibPD scripts)
-* Obstacle filtering (require a pathfinding algorithm to calculate the sound coming from reflections)
+* Obstacle filtering (requires a pathfinding algorithm to calculate the sound coming from reflections)
 * Optimize memory allocation when loading a clip somehow... (pointers?)
 
 ---
