@@ -65,10 +65,11 @@ the state of an enum (inspired by Wwise).
 * Autoduck on buses
 * In editor FX modules for Sequences and Buses
 * Remove the clicks when using PureDataOption.PlayRange or the PureDataOption.Time
-* Fix the doppler effect bug that occurs when pausing and playing the editor
-* Fix the "no matching catch" error in Pure Data when using [umixer~]
-* Fix the import setting 'Force To Mono' bug (sound plays only on left speaker)
-* Fix bus volume or master volume at runtime persistence bug
+* Fix: the PureDataOptions that do not apply to sources shouldn't appear in containers
+* Fix: the doppler effect bug that occurs when pausing and playing the editor
+* Fix: the "no matching catch" error in Pure Data when using [umixer~]
+* Fix: the import setting 'Force To Mono' bug (sound plays only on left speaker)
+* Fix: bus volume or master volume at runtime persistence bug
 * Send current beat to instrument patches
 * The options PureDataOption.Tempo() and PureDataOption.Beats() should apply their effect immediatly instead of waiting until the next time the step is played
 * Gain slider to expand the soundwave in PureDataSetup

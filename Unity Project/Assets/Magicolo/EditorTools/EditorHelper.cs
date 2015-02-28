@@ -7,6 +7,12 @@ namespace Magicolo.EditorTools {
 
 		public Object[] selection;
 		
+		[SerializeField]
+		protected bool repaintDummy;
+		
+		[SerializeField]
+		protected bool repaint;
+		
 		public virtual void Update() {
 			Unsubscribe();
 			Subscribe();

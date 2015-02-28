@@ -6,7 +6,7 @@ namespace Magicolo.AudioTools {
 	public static class PureDataCustomMenus {
 	
 		[MenuItem("Magicolo's Tools/Create/Pure Data")]
-		static void CreateAudioPlayer() {
+		static void CreatePureData() {
 			GameObject gameObject;
 			PureData existingPureData = Object.FindObjectOfType<PureData>();
 		

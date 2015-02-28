@@ -17,12 +17,6 @@ namespace Magicolo.AudioTools {
 		[SerializeField]
 		bool updateHierarchy;
 		
-		[SerializeField]
-		bool repaintDummy;
-		
-		[SerializeField]
-		bool repaint;
-		
 		public PureDataEditorHelper(PureData pureData) {
 			this.pureData = pureData;
 		}

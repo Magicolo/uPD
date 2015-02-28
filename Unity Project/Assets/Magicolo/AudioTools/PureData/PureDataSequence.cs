@@ -152,7 +152,7 @@ namespace Magicolo.AudioTools {
 					SetSource(nextSources.Dequeue());
 					SetOutput(output);
 					SetVolume(volume, 0.01F);
-					SetTickSpeed(60F * steps[0].beats / steps[0].tempo);
+					SetTickSpeed(60F * steps[0].Beats / steps[0].Tempo);
 					SwitchOn();
 				
 					pureData.sequenceManager.Activate(this);
@@ -205,7 +205,7 @@ namespace Magicolo.AudioTools {
 			if (CurrentStepIndex < steps.Length) {
 				PureDataSequenceStep step = steps[CurrentStepIndex];
 				
-				SetTickSpeed(60F * step.beats / step.tempo);
+				SetTickSpeed(60F * step.Beats / step.Tempo);
 				
 				foreach (PureDataSequenceTrack track in tracks) {
 					track.Step(tickSpeed, CurrentStepIndex, this);
@@ -286,19 +286,40 @@ namespace Magicolo.AudioTools {
 		}
 
 		public void SetStepTempo(int stepIndex, float tempo) {
-			steps[stepIndex].tempo = tempo;
+			steps[stepIndex].Tempo = tempo;
+			pureData.editorHelper.RepaintInspector();
 		}
 
 		public void SetStepBeats(int stepIndex, int beats) {
-			steps[stepIndex].beats = beats;
+			steps[stepIndex].Beats = beats;
+			pureData.editorHelper.RepaintInspector();
 		}
 
+		public void SetStepPattern(int trackIndex, int stepIndex, int patternIndex) {
+			tracks[trackIndex].SetStepPattern(stepIndex, patternIndex);
+			pureData.editorHelper.RepaintInspector();
+		}
+
+		public void SetTrackSendType(int trackIndex, int patternIndex, PureDataPatternSendTypes sendType) {
+			tracks[trackIndex].SetSendType(patternIndex, sendType);
+			pureData.editorHelper.RepaintInspector();
+		}
+
+		public void SetTrackPattern(int trackIndex, int patternIndex, int sendSize, int subdivision, float[] pattern) {
+			tracks[trackIndex].SetPattern(patternIndex, sendSize, subdivision, pattern);
+			pureData.editorHelper.RepaintInspector();
+		}
+		
 		public float GetStepTempo(int stepIndex) {
-			return steps[stepIndex].tempo;
+			return steps[stepIndex].Tempo;
 		}
 
 		public int GetStepBeats(int stepIndex) {
-			return steps[stepIndex].beats;
+			return steps[stepIndex].Beats;
+		}
+		
+		public int GetStepPattern(int trackIndex, int stepIndex) {
+			return tracks[trackIndex].steps[stepIndex].patternIndex;
 		}
 		
 		public void ApplyOptions(params PureDataOption[] options) {

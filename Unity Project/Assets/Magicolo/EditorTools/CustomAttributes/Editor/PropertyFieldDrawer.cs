@@ -39,7 +39,7 @@ namespace Magicolo.EditorTools {
 				string[] propertyPathSplit = propertyPath.Split('.');
 				propertyPathSplit[propertyPathSplit.Length - 1] = propertyPathSplit.Last().Capitalized();
 				propertyPath = propertyPathSplit.Concat(".");
-				property.serializedObject.targetObject.SetValueToMemberAtPath(propertyPath, property.GetValue());
+				property.serializedObject.targetObject.SetValueToMemberAtPath(propertyPath, property.serializedObject.targetObject.GetValueFromMemberAtPath(propertyPath));
 			}
 		
 			End();

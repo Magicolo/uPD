@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_2;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_3;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -82,6 +82,7 @@
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataListener.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataMessageReceiver.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataOption.cs" />
+     <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataOptionValue.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataPatchManager.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataPlay.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataPluginManager.cs" />
@@ -90,7 +91,6 @@
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataScriptableIdManager.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSequence.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSequenceItem.cs" />
-     <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSequenceItemInternal.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSequenceManager.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSequencePattern.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSequenceSpatializer.cs" />
@@ -100,7 +100,6 @@
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSetup.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSource.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSourceItem.cs" />
-     <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSourceItemInternal.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSourceManager.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSourceOrContainerItem.cs" />
      <Compile Include="Assets\Magicolo\AudioTools\PureData\PureDataSourceSpatializer.cs" />
@@ -152,6 +151,7 @@
      <Compile Include="Assets\Magicolo\GeneralTools\Extensions\RendererExtensions.cs" />
      <Compile Include="Assets\Magicolo\GeneralTools\Extensions\Rigidbody2DExtension.cs" />
      <Compile Include="Assets\Magicolo\GeneralTools\Extensions\RigidbodyExtensions.cs" />
+     <Compile Include="Assets\Magicolo\GeneralTools\Extensions\ScriptableObjectExtensions.cs" />
      <Compile Include="Assets\Magicolo\GeneralTools\Extensions\SerializedPropertyExtensions.cs" />
      <Compile Include="Assets\Magicolo\GeneralTools\Extensions\SpriteRendererExtensions.cs" />
      <Compile Include="Assets\Magicolo\GeneralTools\Extensions\StringExtensions.cs" />
@@ -168,9 +168,10 @@
      <Compile Include="Assets\Magicolo\GeneralTools\Logger\Logger.cs" />
      <Compile Include="Assets\Magicolo\GeneralTools\Logger\ScreenLogger.cs" />
      <Compile Include="Assets\Magicolo\GeneralTools\Logger\ScreenLoggerLine.cs" />
+     <Compile Include="Assets\Test\Bobs.cs" />
      <Compile Include="Assets\Test\zTest.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

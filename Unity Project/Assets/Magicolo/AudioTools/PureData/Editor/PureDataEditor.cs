@@ -643,62 +643,114 @@ namespace Magicolo.AudioTools {
 			if (currentOptionProperty.isExpanded) {
 				EditorGUI.indentLevel += 1;
 		
-				EditorGUI.BeginChangeCheck();
 				
-				EditorGUILayout.PropertyField(currentOptionProperty.FindPropertyRelative("type"));
+				bool resetValue = ShowOptionTypes();
 				
-				if (EditorGUI.EndChangeCheck()) {
-					containerManagerSerialized.ApplyModifiedProperties();
-					currentOption.SetDefaultValue();
-				}
 		
-				// Float fields
-				if (currentOption.type == PureDataOption.OptionTypes.FadeIn || currentOption.type == PureDataOption.OptionTypes.FadeOut || currentOption.type == PureDataOption.OptionTypes.MinDistance || currentOption.type == PureDataOption.OptionTypes.MaxDistance) {
-					currentOption.SetValue(Mathf.Max(EditorGUILayout.FloatField("Value".ToGUIContent(), currentOption.GetValue<float>()), 0));
+				switch (currentOption.type) {
+					case PureDataOption.OptionTypes.Volume:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.FloatArray;
+						float[] volumeData = currentOption.GetValue<float[]>();
+						volumeData[0] = Mathf.Max(EditorGUILayout.FloatField("Value".ToGUIContent(), volumeData[0]), 0);
+						volumeData[1] = Mathf.Max(EditorGUILayout.FloatField("Time".ToGUIContent(), volumeData[1]), 0);
+						currentOption.SetValue(volumeData);
+						currentOption.SetDefaultValue(new []{ 1F, 0F });
+						break;
+					case PureDataOption.OptionTypes.Pitch:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.FloatArray;
+						float[] pitchData = currentOption.GetValue<float[]>();
+						pitchData[0] = EditorGUILayout.FloatField("Value".ToGUIContent(), pitchData[0]);
+						pitchData[1] = Mathf.Max(EditorGUILayout.FloatField("Time".ToGUIContent(), pitchData[1]), 0);
+						currentOption.SetValue(pitchData);
+						currentOption.SetDefaultValue(new []{ 1F, 0F });
+						break;
+					case PureDataOption.OptionTypes.RandomVolume:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.Float;
+						currentOption.SetValue(EditorGUILayout.Slider("Value".ToGUIContent(), currentOption.GetValue<float>(), 0, 1));
+						currentOption.SetDefaultValue(0F);
+						break;
+					case PureDataOption.OptionTypes.RandomPitch:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.Float;
+						currentOption.SetValue(EditorGUILayout.Slider("Value".ToGUIContent(), currentOption.GetValue<float>(), 0, 1));
+						currentOption.SetDefaultValue(0F);
+						break;
+					case PureDataOption.OptionTypes.FadeIn:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.Float;
+						currentOption.SetValue(Mathf.Max(EditorGUILayout.FloatField("Value".ToGUIContent(), currentOption.GetValue<float>()), 0));
+						currentOption.SetDefaultValue(0F);
+						break;
+					case PureDataOption.OptionTypes.FadeOut:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.Float;
+						currentOption.SetValue(Mathf.Max(EditorGUILayout.FloatField("Value".ToGUIContent(), currentOption.GetValue<float>()), 0));
+						currentOption.SetDefaultValue(0.1F);
+						break;
+					case PureDataOption.OptionTypes.Loop:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.Bool;
+						currentOption.SetValue(EditorGUILayout.Toggle("Value".ToGUIContent(), currentOption.GetValue<bool>()));
+						currentOption.SetDefaultValue(false);
+						break;
+					case PureDataOption.OptionTypes.Clip:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.String;
+						ShowClipOption();
+						currentOption.SetDefaultValue("");
+						break;
+					case PureDataOption.OptionTypes.Output:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.String;
+						ShowOutputOption();
+						currentOption.SetDefaultValue("Master");
+						break;
+					case PureDataOption.OptionTypes.PlayRange:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.FloatArray;
+						float[] playRangeData = currentOption.GetValue<float[]>();
+						EditorGUILayout.MinMaxSlider("Value".ToGUIContent(), ref playRangeData[0], ref playRangeData[1], 0, 1);
+						playRangeData[0] = float.IsNaN(playRangeData[0]) ? 0 : Mathf.Clamp(playRangeData[0], 0, playRangeData[1]);
+						playRangeData[1] = float.IsNaN(playRangeData[1]) ? 1 : Mathf.Clamp(playRangeData[1], playRangeData[0], 1);
+						currentOption.SetValue(playRangeData);
+						currentOption.SetDefaultValue(new []{ 0F, 1F });
+						break;
+					case PureDataOption.OptionTypes.Time:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.Float;
+						currentOption.SetValue(EditorGUILayout.Slider("Value".ToGUIContent(), currentOption.GetValue<float>(), 0, 1));
+						currentOption.SetDefaultValue(0F);
+						break;
+					case PureDataOption.OptionTypes.DopplerLevel:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.Float;
+						currentOption.SetValue(EditorGUILayout.Slider("Value".ToGUIContent(), currentOption.GetValue<float>(), 0, 10));
+						currentOption.SetDefaultValue(1F);
+						break;
+					case PureDataOption.OptionTypes.VolumeRolloffMode:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.Float;
+						currentOption.SetValue((float)(PureDataVolumeRolloffModes)EditorGUILayout.EnumPopup("Value".ToGUIContent(), (PureDataVolumeRolloffModes)currentOption.GetValue<float>()));
+						currentOption.SetDefaultValue(0F);
+						break;
+					case PureDataOption.OptionTypes.MinDistance:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.Float;
+						currentOption.SetValue(Mathf.Max(EditorGUILayout.FloatField("Value".ToGUIContent(), currentOption.GetValue<float>()), 0));
+						currentOption.SetDefaultValue(5F);
+						break;
+					case PureDataOption.OptionTypes.MaxDistance:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.Float;
+						currentOption.SetValue(Mathf.Max(EditorGUILayout.FloatField("Value".ToGUIContent(), currentOption.GetValue<float>()), 0));
+						currentOption.SetDefaultValue(500F);
+						break;
+					case PureDataOption.OptionTypes.PanLevel:
+						currentOption.value.type = PureDataOptionValue.ValueTypes.Float;
+						currentOption.SetValue(EditorGUILayout.Slider("Value".ToGUIContent(), currentOption.GetValue<float>(), 0, 1));
+						currentOption.SetDefaultValue(0.75F);
+						break;
+					case PureDataOption.OptionTypes.StepTempo:
+						break;
+					case PureDataOption.OptionTypes.StepBeats:
+						break;
+					case PureDataOption.OptionTypes.StepPattern:
+						break;
 				}
-				else if (currentOption.type == PureDataOption.OptionTypes.Pitch) {
-					Vector2 pitch = currentOption.GetValue<Vector2>();
-					pitch.x = EditorGUILayout.FloatField("Value".ToGUIContent(), pitch.x);
-					pitch.y = Mathf.Max(EditorGUILayout.FloatField("Time".ToGUIContent(), pitch.y), 0);
-					currentOption.SetValue(pitch);
+				
+				if (resetValue) {
+					currentOption.ResetValue();
+					currentOptionProperty.serializedObject.Update();
 				}
-				else if (currentOption.type == PureDataOption.OptionTypes.Volume) {
-					Vector2 volume = currentOption.GetValue<Vector2>();
-					volume.x = Mathf.Max(EditorGUILayout.FloatField("Value".ToGUIContent(), volume.x), 0);
-					volume.y = Mathf.Max(EditorGUILayout.FloatField("Time".ToGUIContent(), volume.y), 0);
-					currentOption.SetValue(volume);
-				}
-				// Slider fields
-				else if (currentOption.type == PureDataOption.OptionTypes.RandomVolume || currentOption.type == PureDataOption.OptionTypes.RandomPitch || currentOption.type == PureDataOption.OptionTypes.PanLevel || currentOption.type == PureDataOption.OptionTypes.Time) {
-					currentOption.SetValue(EditorGUILayout.Slider("Value".ToGUIContent(), currentOption.GetValue<float>(), 0, 1));
-				}
-				else if (currentOption.type == PureDataOption.OptionTypes.DopplerLevel) {
-					currentOption.SetValue(EditorGUILayout.Slider("Value".ToGUIContent(), currentOption.GetValue<float>(), 0, 10));
-				}
-				// Min max slider fields
-				else if (currentOption.type == PureDataOption.OptionTypes.PlayRange) {
-					Vector2 playRange = currentOption.GetValue<Vector2>();
-					EditorGUILayout.MinMaxSlider("Value".ToGUIContent(), ref playRange.x, ref playRange.y, 0, 1);
-					playRange.x = float.IsNaN(playRange.x) ? 0 : Mathf.Clamp(playRange.x, 0, playRange.y);
-					playRange.y = float.IsNaN(playRange.y) ? 1 : Mathf.Clamp(playRange.y, playRange.x, 1);
-					currentOption.SetValue(playRange);
-				}
-				// Bool fields
-				else if (currentOption.IsBool) {
-					currentOption.SetValue(EditorGUILayout.Toggle("Value".ToGUIContent(), currentOption.GetValue<bool>()));
-				}
-				// Enum fields
-				else if (currentOption.type == PureDataOption.OptionTypes.Output) {
-					ShowOutput();
-				}
-				else if (currentOption.IsVolumeRolloffMode) {
-					currentOption.SetValue((PureDataVolumeRolloffModes)EditorGUILayout.EnumPopup("Value".ToGUIContent(), currentOption.GetValue<PureDataVolumeRolloffModes>()));
-				}
-				// Audio clip fields
-				else if (currentOption.IsClip) {
-					currentOption.SetValue((AudioClip)EditorGUILayout.ObjectField("Value".ToGUIContent(), currentOption.GetValue<AudioClip>(), typeof(AudioClip), true));
-				}
-		
+				
 				if (currentOption.IsDelayable) {
 					currentOption.delay = Mathf.Max(EditorGUILayout.FloatField("Delay".ToGUIContent(), currentOption.delay), 0);
 				}
@@ -706,12 +758,41 @@ namespace Magicolo.AudioTools {
 				EditorGUI.indentLevel -= 1;
 			}
 		}
+
+		bool ShowOptionTypes() {
+			bool changed = false;
+			List<string> types = new List<string>(Enum.GetNames(typeof(PureDataOption.OptionTypes)));
+			types.Remove(PureDataOption.OptionTypes.StepBeats.ToString());
+			types.Remove(PureDataOption.OptionTypes.StepTempo.ToString());
+			types.Remove(PureDataOption.OptionTypes.StepPattern.ToString());
+			types.Remove(PureDataOption.OptionTypes.TrackSendType.ToString());
+			types.Remove(PureDataOption.OptionTypes.TrackPattern.ToString());
 			
-		void ShowOutput() {
+			EditorGUI.BeginChangeCheck();
+			
+			currentOption.type = (PureDataOption.OptionTypes)EditorGUILayout.Popup("Type", (int)currentOption.type, types.ToArray());
+			
+			if (EditorGUI.EndChangeCheck()) {
+				currentOptionProperty.serializedObject.Update();
+				changed = true;
+			}
+			
+			return changed;	
+		}
+		
+		void ShowOutputOption() {
 			List<string> options = new List<string>();
 			options.Add("Master");
 			options.AddRange(pureData.busManager.buses.GetNames());
 			currentOption.SetValue(Popup(currentOption.GetValue<string>(), options.ToArray(), "Output".ToGUIContent()));
+		}
+
+		void ShowClipOption() {
+			List<string> options = new List<string>();
+			foreach (PureDataClip clip in pureData.clipManager.GetAllClips()) {
+				options.Add(clip.Name);
+			}
+			currentOption.SetValue(Popup(currentOption.GetValue<string>(), options.ToArray(), "Clip".ToGUIContent()));
 		}
 		
 		void ShowSubSourcesAddFoldout() {
@@ -1250,8 +1331,8 @@ namespace Magicolo.AudioTools {
 				rect.width = 32;
 				
 				PureDataSequenceStep step = currentSequenceSelection.Step;
-				for (int i = 0; i < step.beats; i++) {
-					rect.x = i * (width / step.beats) + x;
+				for (int i = 0; i < step.Beats; i++) {
+					rect.x = i * (width / step.Beats) + x;
 					GUI.Label(new Rect(rect.x - (i + 1).ToString().GetWidth(EditorStyles.miniFont) / 2 + 8, rect.y - 3, rect.width, rect.height), (i + 1).ToString(), new GUIStyle("miniLabel"));
 					GUI.Label(new Rect(rect.x + 4, rect.y + 4, rect.width, rect.height), "◤", arrowStyle);
 				}
@@ -1261,7 +1342,7 @@ namespace Magicolo.AudioTools {
 				EditorGUILayout.LabelField(" ", GUILayout.Height(currentSequencePattern.sendSize * 16 + 20));
 				EditorGUILayout.EndHorizontal();
 				
-				if (currentSequencePattern.sendType == PureDataSequencePattern.SendTypes.Bool) {
+				if (currentSequencePattern.sendType == PureDataPatternSendTypes.Bool) {
 					rect.x += EditorGUI.indentLevel * 16 - 5;
 					rect.width = ((Screen.width - rect.x - 27) / currentSequencePattern.subdivision);
 				}
@@ -1280,11 +1361,11 @@ namespace Magicolo.AudioTools {
 					
 					for (int j = 0; j < currentSequencePattern.subdivision; j++) {
 						switch (currentSequencePattern.sendType) {
-							case PureDataSequencePattern.SendTypes.Bool:
+							case PureDataPatternSendTypes.Bool:
 								rect.x = j * rect.width + x;
 								currentSequencePattern.pattern[currentSequencePattern.subdivision * i + j] = EditorGUI.Toggle(rect, currentSequencePattern.pattern[currentSequencePattern.subdivision * i + j] != 0, new GUIStyle("toolbarButton")).GetHashCode();
 								break;
-							case PureDataSequencePattern.SendTypes.Float:
+							case PureDataPatternSendTypes.Float:
 								rect.x = j * (rect.width - 75) + x;
 								currentSequencePattern.pattern[currentSequencePattern.subdivision * i + j] = EditorGUI.FloatField(rect, currentSequencePattern.pattern[currentSequencePattern.subdivision * i + j]);
 								break;

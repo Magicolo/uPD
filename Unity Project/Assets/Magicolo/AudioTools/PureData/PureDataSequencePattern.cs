@@ -7,11 +7,6 @@ using Magicolo.GeneralTools;
 namespace Magicolo.AudioTools {
 	[System.Serializable]
 	public class PureDataSequencePattern : INamable {
-
-		public enum SendTypes {
-			Bool,
-			Float,
-		}
 		
 		[SerializeField]
 		string name;
@@ -24,7 +19,7 @@ namespace Magicolo.AudioTools {
 			}
 		}
 
-		public SendTypes sendType;
+		public PureDataPatternSendTypes sendType;
 		[Range(1, 32)] public int sendSize = 1;
 		[Range(1, 32)] public int subdivision = 4;
 		public float[] pattern = new float[4];
@@ -45,6 +40,14 @@ namespace Magicolo.AudioTools {
 			}
 			
 			return sortedPattern;
+		}
+
+		public void SetPattern(int sendSize, int subdivision, float[] pattern) {
+			this.sendSize = sendSize;
+			this.subdivision = subdivision;
+			this.pattern = pattern;
+			
+			SortPattern();
 		}
 		
 		public void SortPattern() {

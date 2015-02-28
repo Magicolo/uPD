@@ -7,8 +7,27 @@ namespace Magicolo.AudioTools {
 	[System.Serializable]
 	public class PureDataSequenceStep {
 
-		[Min(1)] public float tempo = 120;
-		[Range(1, 16)] public int beats = 4;
+		[SerializeField, PropertyField(typeof(MinAttribute), 1)]
+		float tempo;
+		public float Tempo {
+			get {
+				return tempo;
+			}
+			set {
+				tempo = Mathf.Max(value, 1);
+			}
+		}
+		
+		[SerializeField, PropertyField(typeof(RangeAttribute), 1, 16)]
+		int beats;
+		public int Beats {
+			get {
+				return beats;
+			}
+			set {
+				beats = Mathf.Clamp(value, 1, 16);
+			}
+		}
 	}
 }
 

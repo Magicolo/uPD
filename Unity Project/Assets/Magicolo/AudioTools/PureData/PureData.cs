@@ -170,14 +170,7 @@ public class PureData : MonoBehaviour {
 	#endregion
 	
 	void Awake() {
-		Logger.LogToScreen = true;
-		
-		try {
-			Initialize();
-		}
-		catch (System.Exception e) {
-			Logger.Log(e);
-		}
+		Initialize();
 	}
 
 	void Update() {

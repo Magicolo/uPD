@@ -15,7 +15,7 @@ namespace Magicolo.AudioTools {
 		}
 
 		public PureDataSourceItem Play(string soundName, object source, float delay, params PureDataOption[] options) {
-			PureDataSourceItemInternal item = GetSourceItem(soundName, source);
+			PureDataSourceItem item = GetSourceItem(soundName, source);
 			item.ApplyOptions(options);
 			item.Play(delay);
 			return item;
@@ -29,18 +29,18 @@ namespace Magicolo.AudioTools {
 		}
 
 		public PureDataSequenceItem PlaySequence(string sequenceName, object source, float delay, params PureDataOption[] options) {
-			PureDataSequenceItemInternal item = GetSequenceItem(sequenceName, source);
+			PureDataSequenceItem item = GetSequenceItem(sequenceName, source);
 			item.ApplyOptions(options);
 			item.Play(delay);
 			return item;
 		}
 		
-		public PureDataSourceItemInternal GetSourceItem(string soundName, object source) {
-			return new PureDataSourceItemInternal(pureData.sourceManager.GetSource(soundName, source), pureData);
+		public PureDataSourceItem GetSourceItem(string soundName, object source) {
+			return new PureDataSourceItem(pureData.sourceManager.GetSource(soundName, source), pureData);
 		}
 			
-		public PureDataSourceItemInternal GetSourceItem(PureDataSubContainer subContainer, object source) {
-			PureDataSourceItemInternal sourceAudioItem = null;
+		public PureDataSourceItem GetSourceItem(PureDataSubContainer subContainer, object source) {
+			PureDataSourceItem sourceAudioItem = null;
 			
 			switch (subContainer.type) {
 				default:
@@ -166,8 +166,8 @@ namespace Magicolo.AudioTools {
 			return switchAudioItem;
 		}
 	
-		public PureDataSequenceItemInternal GetSequenceItem(string sequenceName, object source) {
-			return new PureDataSequenceItemInternal(pureData.sequenceManager.GetSequence(sequenceName, source), pureData);
+		public PureDataSequenceItem GetSequenceItem(string sequenceName, object source) {
+			return new PureDataSequenceItem(pureData.sequenceManager.GetSequence(sequenceName, source), pureData);
 		}
 	}
 }

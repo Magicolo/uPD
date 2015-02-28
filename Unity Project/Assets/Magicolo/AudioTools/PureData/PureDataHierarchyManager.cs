@@ -144,9 +144,14 @@ namespace Magicolo.AudioTools {
 			bool hasChanged = false;
 			setups = pureData.GetComponentsInChildren<PureDataSetup>();
 			
-			#if !UNITY_WEBPLAYER
+			#if !UNITY_WEBPLAYER && UNITY_EDITOR
+			string resourcesPath = Application.dataPath + Path.AltDirectorySeparatorChar + "Resources";
+			if (!Directory.Exists(resourcesPath)) {
+				UnityEditor.AssetDatabase.CreateFolder("Assets", "Resources");
+			}
+			
 			string[] audioExtensions = { ".wav", ".mp3", ".ogg", ".aiff" };
-			string[] files = Directory.GetFiles(Application.dataPath + Path.AltDirectorySeparatorChar + "Resources", "*.*", SearchOption.AllDirectories);
+			string[] files = Directory.GetFiles(resourcesPath, "*.*", SearchOption.AllDirectories);
 			List<string> audioFiles = new List<string>();
 			
 			foreach (string file in files) {

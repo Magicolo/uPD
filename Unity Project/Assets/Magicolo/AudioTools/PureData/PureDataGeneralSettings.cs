@@ -7,6 +7,20 @@ namespace Magicolo.AudioTools {
 	[System.Serializable]
 	public class PureDataGeneralSettings : ScriptableObject {
 		
+		[SerializeField, PropertyField(typeof(MinAttribute))]
+		int maxVoices = 100;
+		public int MaxVoices {
+			get {
+				return maxVoices;
+			}
+			set {
+				if (!ApplicationPlaying) {
+					maxVoices = value;
+					pureData.sourceManager.UpdateSourceContainer();
+				}
+			}
+		}
+		
 		[SerializeField, PropertyField(typeof(RangeAttribute), 0, 1)]
 		float masterVolume = 1;
 		public float MasterVolume {
@@ -18,20 +32,6 @@ namespace Magicolo.AudioTools {
 				
 				if (ApplicationPlaying) {
 					SetMasterVolume(masterVolume);
-				}
-			}
-		}
-		
-		[SerializeField, PropertyField(typeof(MinAttribute))]
-		int maxVoices = 100;
-		public int MaxVoices {
-			get {
-				return maxVoices;
-			}
-			set {
-				if (!ApplicationPlaying) {
-					maxVoices = value;
-					pureData.sourceManager.UpdateSourceContainer();
 				}
 			}
 		}
@@ -65,13 +65,17 @@ namespace Magicolo.AudioTools {
 		public void Initialize(PureData pureData) {
 			this.pureData = pureData;
 			
-			applicationPlaying = Application.isPlaying;
-			applicationIsEditor = Application.isEditor;
-			mainThread = Thread.CurrentThread;
+			InitializeSettings();
 			
 			if (!Application.isPlaying) {
 				SetResourcesPath();
 			}
+		}
+		
+		public void InitializeSettings() {
+			applicationPlaying = Application.isPlaying;
+			applicationIsEditor = Application.isEditor;
+			mainThread = Thread.CurrentThread;
 		}
 		
 		public void SetDefaultValues() {
@@ -101,15 +105,6 @@ namespace Magicolo.AudioTools {
 
 		public bool IsMainThread() {
 			return Thread.CurrentThread == MainThread;
-		}
-		
-		public static void Switch(PureDataGeneralSettings source, PureDataGeneralSettings target) {
-			source.MasterVolume = target.MasterVolume;
-			source.MaxVoices = target.MaxVoices;
-			source.patchesPath = target.patchesPath;
-			source.speedOfSound = target.speedOfSound;
-			
-			source.Initialize(source.pureData);
 		}
 		
 		public static PureDataGeneralSettings Create(string path) {

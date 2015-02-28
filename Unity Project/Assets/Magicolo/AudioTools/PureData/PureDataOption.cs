@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using System.Collections;
 using Magicolo;
 using Magicolo.AudioTools;
@@ -21,53 +22,21 @@ public class PureDataOption {
 		Output,
 		PlayRange,
 		Time,
-		Tempo,
-		Beats,
 		DopplerLevel,
 		VolumeRolloffMode,
 		MinDistance,
 		MaxDistance,
-		PanLevel
+		PanLevel,
+		StepTempo,
+		StepBeats,
+		StepPattern,
+		TrackSendType,
+		TrackPattern
 	}
 	
 	public OptionTypes type;
+	public PureDataOptionValue value;
 	public float delay;
-	
-	public bool IsFloat {
-		get {
-			return FloatTypes.Contains(type);
-		}
-	}
-	
-	public bool IsString {
-		get {
-			return StringTypes.Contains(type);
-		}
-	}
-		
-	public bool IsBool {
-		get {
-			return BoolTypes.Contains(type);
-		}
-	}
-		
-	public bool IsVector2 {
-		get {
-			return Vector2Types.Contains(type);
-		}
-	}
-		
-	public bool IsVolumeRolloffMode {
-		get {
-			return VolumeRolloffModeTypes.Contains(type);
-		}
-	}
-		
-	public bool IsClip {
-		get {
-			return ClipTypes.Contains(type);
-		}
-	}
 	
 	public bool IsDelayable {
 		get {
@@ -75,45 +44,20 @@ public class PureDataOption {
 		}
 	}
 	
-	[SerializeField]
-	float floatValue;
-	
-	[SerializeField]
-	string stringValue;
-	
-	[SerializeField]
-	bool boolValue;
-	
-	[SerializeField]
-	Vector2 vector2Value;
-	
-	[SerializeField]
-	PureDataVolumeRolloffModes volumeRolloffModeValue;
-	
-	[SerializeField]
-	AudioClip clipValue;
-	
-	static readonly OptionTypes[] FloatTypes = { OptionTypes.FadeIn, OptionTypes.FadeOut, OptionTypes.RandomVolume, OptionTypes.RandomPitch, OptionTypes.DopplerLevel, OptionTypes.MinDistance, OptionTypes.MaxDistance, OptionTypes.PanLevel, OptionTypes.Time, OptionTypes.Beats };
-	static readonly OptionTypes[] StringTypes = { OptionTypes.Output };
-	static readonly OptionTypes[] BoolTypes = { OptionTypes.Loop };
-	static readonly OptionTypes[] Vector2Types = { OptionTypes.PlayRange, OptionTypes.Volume, OptionTypes.Pitch, OptionTypes.Tempo };
-	static readonly OptionTypes[] VolumeRolloffModeTypes = { OptionTypes.VolumeRolloffMode };
-	static readonly OptionTypes[] ClipTypes = { OptionTypes.Clip };
 	static readonly OptionTypes[] DelayableTypes = { OptionTypes.Volume, OptionTypes.Pitch, OptionTypes.Output, OptionTypes.Time, OptionTypes.PlayRange, OptionTypes.RandomPitch, OptionTypes.RandomVolume };
 
-	PureDataOption(OptionTypes type, object value, float delay = 0) {
+	PureDataOption(OptionTypes type, object value, object defaultValue, float delay = 0) {
 		this.type = type;
-		SetDefaultValue();
-		SetValue(value);
+		this.value = new PureDataOptionValue(value, defaultValue);
 		this.delay = delay;
 	}
 
-	public static PureDataOption Clip(AudioClip clip) {
-		return new PureDataOption(OptionTypes.Clip, clip);
+	public static PureDataOption Clip(string clipName) {
+		return new PureDataOption(OptionTypes.Clip, clipName, null);
 	}
 	
 	public static PureDataOption Output(string busName, float delay) {
-		return new PureDataOption(OptionTypes.Output, busName, delay);
+		return new PureDataOption(OptionTypes.Output, busName, "Master", delay);
 	}
 	
 	public static PureDataOption Output(string busName) {
@@ -121,15 +65,15 @@ public class PureDataOption {
 	}
 	
 	public static PureDataOption FadeIn(float fadeIn) {
-		return new PureDataOption(OptionTypes.FadeIn, fadeIn);
+		return new PureDataOption(OptionTypes.FadeIn, fadeIn, 0);
 	}
 	
 	public static PureDataOption FadeOut(float fadeOut) {
-		return new PureDataOption(OptionTypes.FadeOut, fadeOut);
+		return new PureDataOption(OptionTypes.FadeOut, fadeOut, 0);
 	}
 	
 	public static PureDataOption Volume(float volume, float time, float delay) {
-		return new PureDataOption(OptionTypes.Volume, new Vector2(volume, time), delay);
+		return new PureDataOption(OptionTypes.Volume, new []{ volume, time }, new []{ 1F, 0F }, delay);
 	}
 	
 	public static PureDataOption Volume(float volume, float time) {
@@ -141,7 +85,7 @@ public class PureDataOption {
 	}
 	
 	public static PureDataOption Pitch(float pitch, float time, float delay) {
-		return new PureDataOption(OptionTypes.Pitch, new Vector2(pitch, time), delay);
+		return new PureDataOption(OptionTypes.Pitch, new []{ pitch, time }, new []{ 1F, 0F }, delay);
 	}
 	
 	public static PureDataOption Pitch(float pitch, float time) {
@@ -153,7 +97,7 @@ public class PureDataOption {
 	}
 	
 	public static PureDataOption RandomVolume(float randomVolume, float delay) {
-		return new PureDataOption(OptionTypes.RandomVolume, randomVolume, delay);
+		return new PureDataOption(OptionTypes.RandomVolume, randomVolume, 0, delay);
 	}
 	
 	public static PureDataOption RandomVolume(float randomVolume) {
@@ -161,7 +105,7 @@ public class PureDataOption {
 	}
 	
 	public static PureDataOption RandomPitch(float randomPitch, float delay) {
-		return new PureDataOption(OptionTypes.RandomPitch, randomPitch, delay);
+		return new PureDataOption(OptionTypes.RandomPitch, randomPitch, 0, delay);
 	}
 	
 	public static PureDataOption RandomPitch(float randomPitch) {
@@ -169,31 +113,31 @@ public class PureDataOption {
 	}
 	
 	public static PureDataOption Loop(bool loop) {
-		return new PureDataOption(OptionTypes.Loop, loop);
+		return new PureDataOption(OptionTypes.Loop, loop, false);
 	}
 	
 	public static PureDataOption DopplerLevel(float dopplerLevel) {
-		return new PureDataOption(OptionTypes.DopplerLevel, dopplerLevel);
+		return new PureDataOption(OptionTypes.DopplerLevel, dopplerLevel, 1);
 	}
 	
 	public static PureDataOption VolumeRolloffMode(PureDataVolumeRolloffModes volumeRolloffMode) {
-		return new PureDataOption(OptionTypes.VolumeRolloffMode, volumeRolloffMode);
+		return new PureDataOption(OptionTypes.VolumeRolloffMode, volumeRolloffMode, (float)PureDataVolumeRolloffModes.Logarithmic);
 	}
 	
 	public static PureDataOption MinDistance(float minDistance) {
-		return new PureDataOption(OptionTypes.MinDistance, minDistance);
+		return new PureDataOption(OptionTypes.MinDistance, minDistance, 5);
 	}
 	
 	public static PureDataOption MaxDistance(float maxDistance) {
-		return new PureDataOption(OptionTypes.MaxDistance, maxDistance);
+		return new PureDataOption(OptionTypes.MaxDistance, maxDistance, 500);
 	}
 	
 	public static PureDataOption PanLevel(float panLevel) {
-		return new PureDataOption(OptionTypes.PanLevel, panLevel);
+		return new PureDataOption(OptionTypes.PanLevel, panLevel, 0.75F);
 	}
 		
 	public static PureDataOption PlayRange(float start, float end, float delay) {
-		return new PureDataOption(OptionTypes.PlayRange, new Vector2(start, end), delay);
+		return new PureDataOption(OptionTypes.PlayRange, new []{ start, end }, new []{ 0F, 1F }, delay);
 	}
 
 	public static PureDataOption PlayRange(float start, float end) {
@@ -201,91 +145,91 @@ public class PureDataOption {
 	}
 
 	public static PureDataOption Time(float time, float delay) {
-		return new PureDataOption(OptionTypes.Time, time, delay);
+		return new PureDataOption(OptionTypes.Time, time, 0, delay);
 	}
 	
 	public static PureDataOption Time(float time) {
 		return Time(time, 0);
 	}
 	
-	public static PureDataOption Tempo(int stepIndex, float tempo) {
-		return new PureDataOption(OptionTypes.Tempo, new Vector2(stepIndex, tempo));
+	public static PureDataOption StepTempo(int stepIndex, float tempo) {
+		return new PureDataOption(OptionTypes.StepTempo, new []{ (float)stepIndex, (float)tempo }, new []{ 0F, 120F });
 	}
 	
-	public static PureDataOption Beats(int stepIndex, int beats) {
-		return new PureDataOption(OptionTypes.Beats, new Vector2(stepIndex, beats));
+	public static PureDataOption StepBeats(int stepIndex, int beats) {
+		return new PureDataOption(OptionTypes.StepBeats, new []{ (float)stepIndex, (float)beats }, new []{ 0F, 4F });
 	}
 	
+	public static PureDataOption StepPattern(int trackIndex, int stepIndex, int patternIndex) {
+		return new PureDataOption(OptionTypes.StepPattern, new []{ (float)trackIndex, (float)stepIndex, (float)patternIndex }, new []{ 0F, 0F, 0F });
+	}
+
+	public static PureDataOption TrackSendType(int trackIndex, int patternIndex, PureDataPatternSendTypes sendType) {
+		return new PureDataOption(OptionTypes.TrackSendType, new []{ (float)trackIndex, (float)patternIndex, (float)sendType }, new []{ 0F, 0F, 0F });
+	}
+
+	public static PureDataOption TrackPattern(int trackIndex, int patternIndex, float[] pattern) {
+		float[] patternData = new float[pattern.Length + 4];
+		patternData[0] = trackIndex;
+		patternData[1] = patternIndex;
+		patternData[2] = 1;
+		patternData[3] = pattern.Length;
+		pattern.CopyTo(patternData, 4);
+		
+		return new PureDataOption(OptionTypes.TrackPattern, patternData, new float[patternData.Length]);
+	}
+
+	public static PureDataOption TrackPattern(int trackIndex, int patternIndex, float[,] pattern) {
+		int sendSize = pattern.GetLength(0);
+		int subdivision = pattern.GetLength(1);
+		float[] patternData = new float[pattern.Length + 4];
+		patternData[0] = trackIndex;
+		patternData[1] = patternIndex;
+		patternData[2] = sendSize;
+		patternData[3] = subdivision;
+		
+		for (int row = 0; row < sendSize; row++) {
+			for (int column = 0; column < subdivision; column++) {
+				patternData[row * subdivision + column + 4] = pattern[row, column];
+			}
+		}
+		
+		return new PureDataOption(OptionTypes.TrackPattern, patternData, new float[patternData.Length]);
+	}
+
 	public string GetValueDisplayName() {
-		return Logger.ObjectToString(GetValue()).Replace("Vector2", "");
+		return value.GetValueDisplayName();
 	}
 	
 	public T GetValue<T>() {
-		return (T)GetValue();
+		return value.GetValue<T>();
 	}
 	
 	public object GetValue() {
-		if (IsFloat) {
-			return floatValue;
-		}
-		if (IsString) {
-			return stringValue;
-		}
-		if (IsBool) {
-			return boolValue;
-		}
-		if (IsVector2) {
-			return vector2Value;
-		}
-		if (IsVolumeRolloffMode) {
-			return volumeRolloffModeValue;
-		}
-		if (IsClip) {
-			return clipValue;
-		}
-		return null;
+		return value.GetValue();
 	}
 
 	public void SetValue(object value) {
-		if (value is float) {
-			floatValue = (float)value;
-		}
-		else if (value is string) {
-			stringValue = (string)value;
-		}
-		else if (value is bool) {
-			boolValue = (bool)value;
-		}
-		else if (value is Vector2) {
-			vector2Value = (Vector2)value;
-		}
-		else if (value is PureDataVolumeRolloffModes) {
-			volumeRolloffModeValue = (PureDataVolumeRolloffModes)value;
-		}
-		else if (value is AudioClip) {
-			clipValue = (AudioClip)value;
-		}
+		this.value.SetValue(value);
 	}
 	
-	public void SetDefaultValue() {
-		floatValue = 0;
-		stringValue = "";
-		boolValue = false;
-		vector2Value = type == OptionTypes.PlayRange ? new Vector2(0, 1) : Vector2.zero;
-		volumeRolloffModeValue = PureDataVolumeRolloffModes.Logarithmic;
-		clipValue = null;
-		delay = 0;
+	public void SetDefaultValue(object value) {
+		this.value.SetDefaultValue(value);
+	}
+	
+	public void ResetValue() {
+		value.ResetValue();
 	}
 	
 	public void Apply(PureDataSource source) {
 		switch (type) {
 			case PureDataOption.OptionTypes.Volume:
-				Vector2 volume = GetValue<Vector2>();
-				source.SetVolume(volume.x, volume.y, delay);
+				float[] volumeData = GetValue<float[]>();
+				source.SetVolume(volumeData[0], volumeData[1], delay);
 				break;
 			case PureDataOption.OptionTypes.Pitch:
-				Vector2 pitch = GetValue<Vector2>();
-				source.SetPitch(pitch.x, pitch.y, delay);
+				float[] pitchData = GetValue<float[]>();
+				source.SetPitch(pitchData[0], pitchData[1], delay);
 				break;
 			case PureDataOption.OptionTypes.RandomVolume:
 				float randomVolume = GetValue<float>();
@@ -305,14 +249,14 @@ public class PureDataOption {
 				source.SetLoop(GetValue<bool>());
 				break;
 			case PureDataOption.OptionTypes.Clip:
-				source.SetClip(source.pureData.clipManager.GetClip(GetValue<AudioClip>().name));
+				source.SetClip(source.pureData.clipManager.GetClip(GetValue<string>()));
 				break;
 			case PureDataOption.OptionTypes.Output:
 				source.SetOutput(GetValue<string>(), delay);
 				break;
 			case PureDataOption.OptionTypes.PlayRange:
-				Vector2 playRange = GetValue<Vector2>();
-				source.SetPlayRange(playRange.x, playRange.y, delay, true);
+				float[] playRangeData = GetValue<float[]>();
+				source.SetPlayRange(playRangeData[0], playRangeData[1], delay, true);
 				break;
 			case PureDataOption.OptionTypes.Time:
 				source.SetPhase(GetValue<float>(), delay);
@@ -321,7 +265,7 @@ public class PureDataOption {
 				source.spatializer.DopplerLevel = GetValue<float>();
 				break;
 			case PureDataOption.OptionTypes.VolumeRolloffMode:
-				source.spatializer.VolumeRolloffMode = GetValue<PureDataVolumeRolloffModes>();
+				source.spatializer.VolumeRolloffMode = (PureDataVolumeRolloffModes)GetValue<float>();
 				break;
 			case PureDataOption.OptionTypes.MinDistance:
 				source.spatializer.MinDistance = GetValue<float>();
@@ -341,8 +285,8 @@ public class PureDataOption {
 	public void Apply(PureDataSequence sequence) {
 		switch (type) {
 			case PureDataOption.OptionTypes.Volume:
-				Vector2 volume = GetValue<Vector2>();
-				sequence.SetVolume(volume.x, volume.y, delay);
+				float[] volumeData = GetValue<float[]>();
+				sequence.SetVolume(volumeData[0], volumeData[1], delay);
 				break;
 			case PureDataOption.OptionTypes.Loop:
 				sequence.SetLoop(GetValue<bool>());
@@ -350,16 +294,8 @@ public class PureDataOption {
 			case PureDataOption.OptionTypes.Output:
 				sequence.SetOutput(GetValue<string>(), delay);
 				break;
-			case PureDataOption.OptionTypes.Tempo:
-				Vector2 tempoData = GetValue<Vector2>();
-				sequence.SetStepTempo((int)tempoData.x, tempoData.y);
-				break;
-			case PureDataOption.OptionTypes.Beats:
-				Vector2 beatsData = GetValue<Vector2>();
-				sequence.SetStepBeats((int)beatsData.x, (int)beatsData.y);
-				break;
 			case PureDataOption.OptionTypes.VolumeRolloffMode:
-				sequence.spatializer.VolumeRolloffMode = GetValue<PureDataVolumeRolloffModes>();
+				sequence.spatializer.VolumeRolloffMode = (PureDataVolumeRolloffModes)GetValue<float>();
 				break;
 			case PureDataOption.OptionTypes.MinDistance:
 				sequence.spatializer.MinDistance = GetValue<float>();
@@ -369,6 +305,26 @@ public class PureDataOption {
 				break;
 			case PureDataOption.OptionTypes.PanLevel:
 				sequence.spatializer.PanLevel = GetValue<float>();
+				break;
+			case PureDataOption.OptionTypes.StepTempo:
+				float[] stepTempoData = GetValue<float[]>();
+				sequence.SetStepTempo((int)stepTempoData[0], stepTempoData[1]);
+				break;
+			case PureDataOption.OptionTypes.StepBeats:
+				float[] stepBeatsData = GetValue<float[]>();
+				sequence.SetStepBeats((int)stepBeatsData[0], (int)stepBeatsData[1]);
+				break;
+			case PureDataOption.OptionTypes.StepPattern:
+				float[] stepPatternData = GetValue<float[]>();
+				sequence.SetStepPattern((int)stepPatternData[0], (int)stepPatternData[1], (int)stepPatternData[2]);
+				break;
+			case PureDataOption.OptionTypes.TrackSendType:
+				float[] trackSendTypeData = GetValue<float[]>();
+				sequence.SetTrackSendType((int)trackSendTypeData[0], (int)trackSendTypeData[1], (PureDataPatternSendTypes)trackSendTypeData[2]);
+				break;
+			case PureDataOption.OptionTypes.TrackPattern:
+				float[] trackPatternData = GetValue<float[]>();
+				sequence.SetTrackPattern((int)trackPatternData[0], (int)trackPatternData[1], (int)trackPatternData[2], (int)trackPatternData[3], trackPatternData.Slice(4));
 				break;
 			default:
 				Logger.LogError(string.Format("{0} can not be applied to {1}.", this, sequence.GetType()));

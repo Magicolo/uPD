@@ -50,7 +50,7 @@ namespace Magicolo {
 		}
 	
 		public static string GetPathWithoutExtension(string path) {
-			return path.TrimEnd(Path.GetExtension(path).ToCharArray());
+			return path.Substring(0, path.Length - Path.GetExtension(path).Length);
 		}
 	
 		public static string GetFolderPath(string folderName) {

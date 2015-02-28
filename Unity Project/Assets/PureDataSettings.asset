@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40345a6636fc6974cba87fd19e0e1331, type: 3}
   m_Name: PureDataSettings
   m_EditorClassIdentifier: 
-  masterVolume: 1
   maxVoices: 100
+  masterVolume: 1
   patchesPath: Patches
   resourcesPath: Patches/Unity/Internal/uresources.pd
   speedOfSound: 343

@@ -29,20 +29,21 @@ namespace Magicolo.EditorTools {
 				iterator.NextVisible(true);
 				
 				EditorGUI.indentLevel += 1;
-				
+				int indent = EditorGUI.indentLevel;
 				while (true) {
-					if (iterator.type != "PPtr<MonoScript>" && iterator.propertyType != SerializedPropertyType.Generic) {
-						position.height = EditorGUI.GetPropertyHeight(iterator, iterator.displayName.ToGUIContent(), true);
-						totalHeight += position.height;
-						EditorGUI.PropertyField(position, iterator);
-						position.y += position.height;
-					}
+					position.height = EditorGUI.GetPropertyHeight(iterator, iterator.displayName.ToGUIContent(), false);
+						
+					totalHeight += position.height;
+					EditorGUI.indentLevel = indent + iterator.depth;
+					EditorGUI.PropertyField(position, iterator);
+					position.y += position.height;
 					
-					if (!iterator.NextVisible(false)) {
+					if (!iterator.NextVisible(iterator.isExpanded)) {
 						break;
 					}
 				}
 				
+				EditorGUI.indentLevel = indent;
 				EditorGUI.indentLevel -= 1;
 				
 				serialized.ApplyModifiedProperties();

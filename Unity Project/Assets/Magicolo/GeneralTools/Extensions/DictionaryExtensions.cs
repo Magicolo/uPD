@@ -35,5 +35,13 @@ namespace Magicolo {
 			keys = keyList.ToArray();
 			values = valueList.ToArray();
 		}
+		
+		public static T[] GetKeyArray<T, U>(this IDictionary<T, U> dictionary) {
+			return new List<T>(dictionary.Keys).ToArray();
+		}
+		
+		public static U[] GetValueArray<T, U>(this IDictionary<T, U> dictionary) {
+			return new List<U>(dictionary.Values).ToArray();
+		}
 	}
 }

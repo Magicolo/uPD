@@ -1,11 +1,11 @@
 #N canvas 200 300 1000 300 10;
 #X obj 0 50 loadbang;
-#X symbolatom 0 0 10 0 0 0 - ubus_receiveNamedefault ubus_sendNamedefault;
-#X msg 0 70 symbol default;
-#X obj 0 90 s ubus_receiveNamedefault;
-#X obj 0 110 Internal/ubus~ default;
-#X obj 0 130 outlet~ default_left;
-#X obj 63 130 outlet~ default_right;
+#X symbolatom 0 0 10 0 0 0 - ubus_receiveNameMusic ubus_sendNameMusic;
+#X msg 0 70 symbol Music;
+#X obj 0 90 s ubus_receiveNameMusic;
+#X obj 0 110 Internal/ubus~ Music;
+#X obj 0 130 outlet~ Music_left;
+#X obj 63 130 outlet~ Music_right;
 #X obj 110 130 outlet;
 #X connect 0 0 2 0;
 #X connect 2 0 3 0;

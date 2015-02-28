@@ -11,3 +11,8 @@ public enum PureDataStates {
 	Stopping,
 	Stopped
 }
+
+public enum PureDataPatternSendTypes {
+	Bool,
+	Float
+}

@@ -152,24 +152,6 @@ namespace Magicolo {
 			return obj.GetType().GetFieldsPropertiesNames(AllFlags, filter);
 		}
 	
-		public static T Clone<T>(this T toClone) {
-			if (!typeof(T).IsSerializable) {
-				throw new ArgumentException("The type must be serializable.", "toClone");
-			}
-
-			if (object.ReferenceEquals(toClone, null)) {
-				return default(T);
-			}
-
-			IFormatter formatter = new BinaryFormatter();
-			Stream stream = new MemoryStream();
-			using (stream) {
-				formatter.Serialize(stream, toClone);
-				stream.Seek(0, SeekOrigin.Begin);
-				return (T)formatter.Deserialize(stream);
-			}
-		}
-
 		public static void Copy<T>(this T copyTo, T copyFrom, params string[] parametersToIgnore) where T : class {
 			if (typeof(Component).IsAssignableFrom(typeof(T))) {
 				List<string> parametersToIgnoreList = new List<string>(parametersToIgnore);

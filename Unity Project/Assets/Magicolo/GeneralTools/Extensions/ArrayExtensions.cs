@@ -82,7 +82,7 @@ namespace Magicolo {
 		}
 	
 		public static T[] Slice<T>(this T[] array, int startIndex) {
-			return array.Slice(startIndex, array.Length);
+			return array.Slice(startIndex, array.Length - startIndex);
 		}
 	
 		public static T[] Slice<T>(this T[] array, int startIndex, int count) {

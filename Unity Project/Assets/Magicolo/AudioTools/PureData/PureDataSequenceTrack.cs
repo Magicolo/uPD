@@ -71,6 +71,18 @@ namespace Magicolo.AudioTools {
 				pureData.communicator.Send(string.Format("utrack_pattern{0}_{1}", sequence.Id, Id), pattern.GetPattern());
 			}
 		}
+
+		public void SetStepPattern(int stepIndex, int patternIndex) {
+			steps[stepIndex].patternIndex = patternIndex < patterns.Length ? patternIndex : -1;
+		}
+
+		public void SetSendType(int patternIndex, PureDataPatternSendTypes sendType) {
+			patterns[patternIndex].sendType = sendType;
+		}
+
+		public void SetPattern(int patternIndex, int sendSize, int subdivision, float[] pattern) {
+			patterns[patternIndex].SetPattern(sendSize, subdivision, pattern);
+		}
 		
 		public void RemovePatternFromSteps(int index) {
 			foreach (PureDataSequenceTrackStep step in steps) {
