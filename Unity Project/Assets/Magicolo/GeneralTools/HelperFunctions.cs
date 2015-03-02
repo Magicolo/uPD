@@ -40,13 +40,21 @@ namespace Magicolo {
 		}
 	
 		public static string GetResourcesPath(Object obj) {
-			string path = "";
+			string resourcesPath = "";
 		
 			#if UNITY_EDITOR
-			path = HelperFunctions.GetPathWithoutExtension(UnityEditor.AssetDatabase.GetAssetPath(obj).Substring("Assets/Resources/".Length));
+			resourcesPath = GetResourcesPath(UnityEditor.AssetDatabase.GetAssetPath(obj));
 			#endif
 		
-			return path;
+			return resourcesPath;
+		}
+		
+		public static string GetResourcesPath(string path){
+			string resourcesPath = "";
+			
+			resourcesPath = GetPathWithoutExtension(path.Substring(path.IndexOf("Resources/") + "Resources/".Length));
+				
+			return resourcesPath;
 		}
 	
 		public static string GetPathWithoutExtension(string path) {
@@ -67,7 +75,22 @@ namespace Magicolo {
 		
 			return folderPath;
 		}
-	
+
+		public static string[] GetFolderPaths(string folderName) {
+			List<string> folderPaths = new List<string>();
+		
+			#if UNITY_EDITOR
+			foreach (string path in UnityEditor.AssetDatabase.GetAllAssetPaths()) {
+				if (path.EndsWith(folderName)) {
+					folderPaths.Add(path);
+					break;
+				}
+			}
+			#endif
+		
+			return folderPaths.ToArray();
+		}
+		
 		public static T LoadAssetInFolder<T>(string assetFileName, string folderName) where T : Object {
 			T asset = default(T);
 		

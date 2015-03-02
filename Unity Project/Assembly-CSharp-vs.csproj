@@ -170,6 +170,7 @@
      <Compile Include="Assets\Magicolo\GeneralTools\Logger\ScreenLoggerLine.cs" />
      <Compile Include="Assets\Test\Bobs.cs" />
      <Compile Include="Assets\Test\zTest.cs" />
+     <None Include="Assets\Magicolo\README.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll</HintPath>
  </Reference>

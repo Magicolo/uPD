@@ -85,7 +85,7 @@ public class PureDataSequenceItem : PureDataItem {
 		}
 	}
 
-	public PureDataSequence sequence;
+	protected PureDataSequence sequence;
 		
 	public PureDataSequenceItem(PureDataSequence sequence, PureData pureData)
 		: base(pureData) {

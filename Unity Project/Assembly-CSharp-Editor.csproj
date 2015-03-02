@@ -65,6 +65,7 @@
      <Compile Include="Assets\Magicolo\EditorTools\Editor\CustomEditorBase.cs" />
      <Compile Include="Assets\Magicolo\EditorTools\Editor\CustomPropertyDrawerBase.cs" />
      <Compile Include="Assets\Magicolo\EditorTools\Editor\CustomWindowBase.cs" />
+     <None Include="Assets\Magicolo\README.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -73,6 +74,12 @@
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+ <Reference Include="AssetStoreTools">
+ <HintPath>E:/Projects/Repositories/uPD/Unity Project/Assets/AssetStoreTools/Editor/AssetStoreTools.dll</HintPath>
+ </Reference>
+ <Reference Include="AssetStoreToolsExtra">
+ <HintPath>E:/Projects/Repositories/uPD/Unity Project/Assets/AssetStoreTools/Editor/AssetStoreToolsExtra.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

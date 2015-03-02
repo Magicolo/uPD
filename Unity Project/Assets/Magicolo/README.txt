@@ -2,6 +2,10 @@
 
 ---
 
+*** MOVE THE CONTENT OF THE '!ToCopyInAssetsFolder' FOLDER TO THE ROOT 'Assets' FOLDER. ***
+
+---
+
 ### PRETTY OBVIOUS FEATURES: ###
 * Works with Unity free and pro.
 * Let's you use the full power of Pure Data via LibPD.

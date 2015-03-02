@@ -72,7 +72,8 @@ namespace Magicolo.AudioTools {
 		public void CreateHierarchy() {
 			#if UNITY_EDITOR
 			foreach (AudioClip clip in clips) {
-				string clipPath = UnityEditor.AssetDatabase.GetAssetPath(clip).GetRange("Assets/Resources/".Length);
+//				string clipPath = UnityEditor.AssetDatabase.GetAssetPath(clip).GetRange("Assets/Resources/".Length);
+				string clipPath = HelperFunctions.GetResourcesPath(clip);
 				string clipDirectory = Path.GetDirectoryName(clipPath);
 				GameObject parent = GetOrAddFolder(clipDirectory);
 				GameObject child = GameObject.Find(clip.name);
@@ -145,18 +146,17 @@ namespace Magicolo.AudioTools {
 			setups = pureData.GetComponentsInChildren<PureDataSetup>();
 			
 			#if !UNITY_WEBPLAYER && UNITY_EDITOR
-			string resourcesPath = Application.dataPath + Path.AltDirectorySeparatorChar + "Resources";
-			if (!Directory.Exists(resourcesPath)) {
-				UnityEditor.AssetDatabase.CreateFolder("Assets", "Resources");
-			}
-			
-			string[] audioExtensions = { ".wav", ".mp3", ".ogg", ".aiff" };
-			string[] files = Directory.GetFiles(resourcesPath, "*.*", SearchOption.AllDirectories);
+			string[] resourcesPaths = HelperFunctions.GetFolderPaths("Resources");
 			List<string> audioFiles = new List<string>();
 			
-			foreach (string file in files) {
-				if (audioExtensions.Contains(Path.GetExtension(file).ToLower())) {
-					audioFiles.Add(file);
+			foreach (string resourcesPath in resourcesPaths) {
+				string[] audioExtensions = { ".wav", ".mp3", ".ogg", ".aiff" };
+				string[] files = Directory.GetFiles(resourcesPath, "*.*", SearchOption.AllDirectories);
+			
+				foreach (string file in files) {
+					if (audioExtensions.Contains(Path.GetExtension(file).ToLower())) {
+						audioFiles.Add(file);
+					}
 				}
 			}
 			

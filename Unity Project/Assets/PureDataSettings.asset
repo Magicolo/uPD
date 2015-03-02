@@ -14,7 +14,7 @@ MonoBehaviour:
   maxVoices: 100
   masterVolume: 1
   patchesPath: Patches
-  resourcesPath: Patches/Unity/Internal/uresources.pd
+  resourcesPath: InAssetsFolder/StreamingAssets/Patches/Unity/Internal/uresources.pd
   speedOfSound: 343
   pureData: {fileID: 0}
 --- !u!114 &11481642
