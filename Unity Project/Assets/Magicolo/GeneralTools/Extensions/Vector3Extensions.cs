@@ -3,71 +3,81 @@ using System.Collections;
 
 namespace Magicolo {
 	public static class Vector3Extensions {
-
-		public static Vector3 SetValues(this Vector3 vector, Vector3 values, string axis = "XYZ") {
-			Vector3 newVector = vector;
-			
-			if (axis.Contains("X")) newVector.x = values.x;
-			if (axis.Contains("Y")) newVector.y = values.y;
-			if (axis.Contains("Z")) newVector.z = values.z;
-			
-			return newVector;
-		}
-			
-		public static Vector3 Lerp(this Vector3 vector, Vector3 target, float time, string axis = "XYZ") {
-			return vector.SetValues(new Vector3(Mathf.Lerp(vector.x, target.x, time), Mathf.Lerp(vector.y, target.y, time), Mathf.Lerp(vector.z, target.z, time)), axis);
+		
+		public static Vector3 SetValues(this Vector3 vector, Vector3 values, string axis) {
+			return ((Vector4)vector).SetValues((Vector4)values, axis);
 		}
 		
-		public static Vector3 LerpLinear(this Vector3 vector, Vector3 target, float time, string axis = "XYZ") {
-			Vector3 difference = target - vector;
-			Vector3 direction = Vector3.zero.SetValues(difference, axis);
-			float distance = direction.magnitude;
-					
-			direction.Normalize();
-					
-			float adjustedSpeed = Time.deltaTime * time;
-			Vector3 adjustedDirection = direction * adjustedSpeed;
-					
-			if (adjustedDirection.magnitude < distance) {
-				vector += Vector3.zero.SetValues(adjustedDirection, axis);
-			}
-			else {
-				vector = vector.SetValues(target, axis);
-			}
+		public static Vector3 SetValues(this Vector3 vector, Vector3 values) {
+			return vector.SetValues(values, "XYZ");
+		}
+				
+		public static Vector3 Lerp(this Vector3 vector, Vector3 target, float time, string axis) {
+			return ((Vector4)vector).Lerp((Vector4)target, time, axis);
+		}
 			
-			return vector;
+		public static Vector3 Lerp(this Vector3 vector, Vector3 target, float time) {
+			return vector.Lerp(target, time, "XYZ");
 		}
 		
-		public static Vector3 LerpAngles(this Vector3 vector, Vector3 targetAngles, float time, string axis = "XYZ") {
-			return vector.SetValues(new Vector3(Mathf.LerpAngle(vector.x, targetAngles.x, time), Mathf.LerpAngle(vector.y, targetAngles.y, time), Mathf.LerpAngle(vector.z, targetAngles.z, time)), axis);
+		public static Vector3 LerpLinear(this Vector3 vector, Vector3 target, float time, string axis) {
+			return ((Vector4)vector).LerpLinear((Vector4)target, time, axis);
+		}
+		
+		public static Vector3 LerpLinear(this Vector3 vector, Vector3 target, float time) {
+			return vector.LerpLinear(target, time, "XYZ");
 		}
 
-		public static Vector3 LerpAnglesLinear(this Vector3 vector, Vector3 target, float time, string axis = "XYZ") {
-			Vector3 difference = new Vector3(Mathf.DeltaAngle(vector.x, target.x), Mathf.DeltaAngle(vector.y, target.y), Mathf.DeltaAngle(vector.z, target.z));
-			Vector3 direction = Vector3.zero.SetValues(difference, axis);
-			float distance = direction.magnitude * Mathf.Rad2Deg;
-					
-			direction.Normalize();
-					
-			float adjustedSpeed = Time.deltaTime * time * Mathf.Rad2Deg;
-			Vector3 adjustedDirection = direction * adjustedSpeed;
-					
-			if (adjustedDirection.magnitude < distance) {
-				vector += Vector3.zero.SetValues(adjustedDirection, axis);
-			}
-			else {
-				vector = vector.SetValues(target, axis);
-			}
-			
-			return vector;
+		public static Vector3 LerpAngles(this Vector3 vector, Vector3 targetAngles, float time, string axis) {
+			return ((Vector4)vector).LerpAngles((Vector4)targetAngles, time, axis);
+		}
+
+		public static Vector3 LerpAngles(this Vector3 vector, Vector3 targetAngles, float time) {
+			return vector.LerpAngles(targetAngles, time, "XYZ");
+		}
+
+		public static Vector3 LerpAnglesLinear(this Vector3 vector, Vector3 targetAngles, float time, string axis) {
+			return ((Vector4)vector).LerpAnglesLinear((Vector4)targetAngles, time, axis);
 		}
 		
-		public static Vector3 Oscillate(this Vector3 vector, Vector3 frequency, Vector3 amplitude, Vector3 center, float offset = 0, string axis = "XYZ") {
-			return vector.SetValues(new Vector3(center.x + amplitude.x * Mathf.Sin(frequency.x * Time.time + offset), center.y + amplitude.y * Mathf.Sin(frequency.y * Time.time + offset), center.z + amplitude.z * Mathf.Sin(frequency.z * Time.time + offset)), axis);
+		public static Vector3 LerpAnglesLinear(this Vector3 vector, Vector3 targetAngles, float time) {
+			return vector.LerpAnglesLinear(targetAngles, time, "XYZ");
 		}
 		
-		public static Vector3 OscillateAngles(this Vector3 vector, Vector3 frequency, Vector3 amplitude, Vector3 center, float offset = 0, string axis = "XYZ") {
-			return vector.SetValues(new Vector3(center.x + amplitude.x * Mathf.Sin(frequency.x * Time.time + offset) * Mathf.Rad2Deg, center.y + amplitude.y * Mathf.Sin(frequency.y * Time.time + offset) * Mathf.Rad2Deg, center.z + amplitude.z * Mathf.Sin(frequency.z * Time.time + offset) * Mathf.Rad2Deg), axis);
+		public static Vector3 Oscillate(this Vector3 vector, Vector3 frequency, Vector3 amplitude, Vector3 center, float offset, string axis) {
+			return ((Vector4)vector).Oscillate((Vector4)frequency, (Vector4)amplitude, (Vector4)center, offset, axis);
+		}
+		
+		public static Vector3 Oscillate(this Vector3 vector, Vector3 frequency, Vector3 amplitude, Vector3 center, float offset) {
+			return vector.Oscillate(frequency, amplitude, center, offset, "XYZ");
+		}
+		
+		public static Vector3 Oscillate(this Vector3 vector, Vector3 frequency, Vector3 amplitude, Vector3 center, string axis) {
+			return vector.Oscillate(frequency, amplitude, center, 0, axis);
+		}
+		
+		public static Vector3 Oscillate(this Vector3 vector, Vector3 frequency, Vector3 amplitude, Vector3 center) {
+			return vector.Oscillate(frequency, amplitude, center, 0, "XYZ");
+		}
+		
+		public static Vector3 OscillateAngles(this Vector3 vector, Vector3 frequency, Vector3 amplitude, Vector3 center, float offset, string axis) {
+			return ((Vector4)vector).OscillateAngles((Vector4)frequency, (Vector4)amplitude, (Vector4)center, offset, axis);
+		}
+
+		public static Vector3 OscillateAngles(this Vector3 vector, Vector3 frequency, Vector3 amplitude, Vector3 center, float offset) {
+			return vector.OscillateAngles(frequency, amplitude, center, offset, "XYZ");
+		}
+
+		public static Vector3 OscillateAngles(this Vector3 vector, Vector3 frequency, Vector3 amplitude, Vector3 center, string axis) {
+			return vector.OscillateAngles(frequency, amplitude, center, 0, axis);
+		}
+
+		public static Vector3 OscillateAngles(this Vector3 vector, Vector3 frequency, Vector3 amplitude, Vector3 center) {
+			return vector.OscillateAngles(frequency, amplitude, center, 0, "XYZ");
+		}
+		
+		public static bool Intersects(this Vector3 vector, Rect rect) {
+			return vector.x >= rect.xMin && vector.x <= rect.xMax && vector.y >= rect.yMin && vector.y <= rect.yMax;
 		}
 		
 		public static Vector3 Rotate(this Vector3 vector, float angle) {

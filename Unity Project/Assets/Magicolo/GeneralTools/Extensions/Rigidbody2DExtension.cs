@@ -8,7 +8,7 @@ namespace Magicolo {
 
 		#region Position
 		public static void SetPosition(this Rigidbody2D rigidbody, Vector2 position, string axis = "XY") {
-			rigidbody.MovePosition(rigidbody.transform.position.SetValues(position, axis));
+			rigidbody.MovePosition(rigidbody.transform.position.SetValues((Vector3)position, axis));
 		}
 		
 		public static void SetPosition(this Rigidbody2D rigidbody, float position, string axis = "XY") {
@@ -16,7 +16,7 @@ namespace Magicolo {
 		}
 		
 		public static void Translate(this Rigidbody2D rigidbody, Vector2 translation, string axis = "XY") {
-			rigidbody.SetPosition(rigidbody.transform.position + (Vector3)translation, axis);
+			rigidbody.SetPosition(rigidbody.transform.position + (Vector3)translation * Time.fixedDeltaTime, axis);
 		}
 		
 		public static void Translate(this Rigidbody2D rigidbody, float translation, string axis = "XY") {
@@ -25,17 +25,17 @@ namespace Magicolo {
 		
 		public static void TranslateTowards(this Rigidbody2D rigidbody, Vector2 targetPosition, float speed, InterpolationModes interpolation, string axis = "XY") {
 			switch (interpolation) {
-				case InterpolationModes.Lerp:
-					rigidbody.SetPosition(rigidbody.transform.position.Lerp(targetPosition, Time.fixedDeltaTime * speed, axis), axis);
+				case InterpolationModes.Quadratic:
+					rigidbody.SetPosition(rigidbody.transform.position.Lerp((Vector3)targetPosition, Time.fixedDeltaTime * speed, axis), axis);
 					break;
 				case InterpolationModes.Linear:
-					rigidbody.SetPosition(rigidbody.transform.position.LerpLinear(targetPosition, Time.fixedDeltaTime * speed, axis), axis);
+					rigidbody.SetPosition(rigidbody.transform.position.LerpLinear((Vector3)targetPosition, Time.fixedDeltaTime * speed, axis), axis);
 					break;
 			}
 		}
 		
 		public static void TranslateTowards(this Rigidbody2D rigidbody, Vector2 targetPosition, float speed, string axis = "XY") {
-			rigidbody.TranslateTowards(targetPosition, speed, InterpolationModes.Lerp, axis);
+			rigidbody.TranslateTowards(targetPosition, speed, InterpolationModes.Quadratic, axis);
 		}
 		
 		public static void TranslateTowards(this Rigidbody2D rigidbody, float targetPosition, float speed, InterpolationModes interpolation, string axis = "XY") {
@@ -43,11 +43,11 @@ namespace Magicolo {
 		}
 		
 		public static void TranslateTowards(this Rigidbody2D rigidbody, float targetPosition, float speed, string axis = "XY") {
-			rigidbody.TranslateTowards(new Vector2(targetPosition, targetPosition), speed, InterpolationModes.Lerp, axis);
+			rigidbody.TranslateTowards(new Vector2(targetPosition, targetPosition), speed, InterpolationModes.Quadratic, axis);
 		}
 		
 		public static void OscillatePosition(this Rigidbody2D rigidbody, Vector2 frequency, Vector2 amplitude, Vector2 center, string axis = "XY") {
-			rigidbody.SetPosition(rigidbody.transform.position.Oscillate(frequency, amplitude, center, rigidbody.transform.GetInstanceID() / 1000, axis));
+			rigidbody.SetPosition(rigidbody.transform.position.Oscillate((Vector3)frequency, (Vector3)amplitude, (Vector3)center, rigidbody.transform.GetInstanceID() / 1000, axis), axis);
 		}
 		
 		public static void OscillatePosition(this Rigidbody2D rigidbody, Vector2 frequency, Vector2 amplitude, string axis = "XY") {
@@ -69,12 +69,12 @@ namespace Magicolo {
 		}
 		
 		public static void Rotate(this Rigidbody2D rigidbody, float rotation) {
-			rigidbody.SetEulerAngles(rigidbody.transform.eulerAngles.z + rotation);
+			rigidbody.SetEulerAngles(rigidbody.transform.eulerAngles.z + rotation * Time.fixedDeltaTime);
 		}
 			
 		public static void RotateTowards(this Rigidbody2D rigidbody, float targetAngle, float speed, InterpolationModes interpolation) {
 			switch (interpolation) {
-				case InterpolationModes.Lerp:
+				case InterpolationModes.Quadratic:
 					rigidbody.SetEulerAngles(rigidbody.transform.eulerAngles.LerpAngles(new Vector3(targetAngle, targetAngle, targetAngle), Time.fixedDeltaTime * speed, "Z").z);
 					break;
 				case InterpolationModes.Linear:
@@ -84,7 +84,7 @@ namespace Magicolo {
 		}
 		
 		public static void RotateTowards(this Rigidbody2D rigidbody, float targetAngle, float speed) {
-			rigidbody.RotateTowards(targetAngle, speed, InterpolationModes.Lerp);
+			rigidbody.RotateTowards(targetAngle, speed, InterpolationModes.Quadratic);
 		}
 
 		public static void OscillateEulerAngles(this Rigidbody2D rigidbody, float frequency, float amplitude, float center) {

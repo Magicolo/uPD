@@ -2,7 +2,7 @@
 namespace Magicolo {
 	
 	public enum InterpolationModes {
-		Lerp,
+		Quadratic,
 		Linear
 	}
 }

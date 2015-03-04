@@ -7,10 +7,12 @@ namespace Magicolo {
 
 		public static void SetColor(this SpriteRenderer spriteRenderer, Color color, string channels) {
 			Color newColor = spriteRenderer.color;
+			
 			if (channels.Contains("R")) newColor.r = color.r;
 			if (channels.Contains("G")) newColor.g = color.g;
 			if (channels.Contains("B")) newColor.b = color.b;
 			if (channels.Contains("A")) newColor.a = color.a;
+			
 			spriteRenderer.color = newColor;
 		}
 		
