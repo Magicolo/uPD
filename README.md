@@ -113,4 +113,5 @@ the state of an enum (inspired by Wwise).
 ---
 
 ### DONATIONS ###
-* If you want to support this project, I accept Bitcoin donations. Thank you. BTC adress: 13z8xG8krxttp5ktUTuNtB1TGc77VspcyK
+* If you want to support this project, I accept Bitcoin donations. Thank you. 
+BTC adress: 13z8xG8krxttp5ktUTuNtB1TGc77VspcyK
