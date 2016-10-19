@@ -111,8 +111,3 @@ the state of an enum (inspired by Wwise).
 * LibPd4Unity, Patrick Sebastien (https://github.com/patricksebastien/libpd4unity)
 
 ---
-
-### DONATIONS ###
-* If you want to support this project, I accept Bitcoin donations. Thank you.
-
-BTC adress: 13z8xG8krxttp5ktUTuNtB1TGc77VspcyK
